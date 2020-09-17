@@ -1,15 +1,17 @@
 <?php
+include_once('includes/utils.php');
+include_once('classes/Route.php');
 
-class Router
-{
-    private $routes;
+class Router {
+
+    private $routes = array();
 
     public function register(Route $route) {
-        $this->routes[] = $route;
+        array_push($this->routes, $route);
     }
 
     public function handleRequest(string $request) {
-        $matches = [];
+        $matches = array();
         foreach ($this->routes as $route) {
             if (preg_match($route->path, $request, $matches)) {
                 // $matches[0] will always be equal to $request, so we just shift it off
@@ -27,6 +29,6 @@ class Router
                 return;
             }
         }
-        throw new RuntimeException("The request '$request' did not match any route.");
+        throw new RuntimeException("Nem volt a kérésnek '$request' megfelelő kiszolgáló.");
     }
 }
