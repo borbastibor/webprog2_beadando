@@ -4,26 +4,28 @@
         <form id="user_edit_form">
             <input type="hidden">
             <tr>
-                <td>Családnév</td>
+                <th>Családnév</th>
                 <td><input type="text" id="user_familyname"></td>
             <tr>
             <tr>
-                <td>Utónév</td>
+                <th>Utónév</th>
                 <td><input type="text" id="user_firstname"></td>
             <tr>
             <tr>
-                <td>Bejelentkezési név</td>
+                <th>Bejelentkezési név</th>
                 <td><input type="text" id="user_login"></td>
             <tr>
             <tr>
-                <td>Jelszó</td>
+                <th>Jelszó</th>
                 <td><input type="text" id="user_password"></td>
             <tr>
             <tr>
-                <td>Jogosultság</td>
+                <th>Jogosultság</th>
                 <td>
                     <select id="rights_list" name="rights_list">
-
+                        <?php
+                            // TODO combobox feltöltése
+                        ?>
                     </select>
                 </td>
             <tr>
