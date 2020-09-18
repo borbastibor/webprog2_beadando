@@ -1,0 +1,29 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+header {
+    margin: 0px;
+    padding: 5px;
+    width: 100%;
+    background-color: cadetblue;
+    color: black;
+    border-bottom: 5px solid blue;
+}
+
+footer {
+    margin: 0px;
+    padding: 5px;
+    width: 100%;
+    background-color: cadetblue;
+    color: black;
+    text-align: center;
+    border-top: 5px solid red;
+}
+
+.maintitle {
+    color: yellow;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}

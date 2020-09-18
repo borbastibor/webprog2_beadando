@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
  */
  CREATE TABLE IF NOT EXISTS `hirek` (
    `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   'cim' text NOT NULL,
    `hir` text NOT NULL,
    `datum` timestamp NOT NULL,
    `felhasznalo_id` int(10) UNSIGNED NOT NULL,

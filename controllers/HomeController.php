@@ -4,7 +4,7 @@ include_once('includes/View_Loader.php');
 
 class HomeController extends AbstractController {
 
-	public $baseName = 'mainpage';
+	public $baseName = 'home';
 	public $params;
 
 	public function __construct(string $params) {
