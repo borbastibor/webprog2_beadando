@@ -1,6 +1,5 @@
 <?php
-
-include_once('includes/utils.php');
+include_once('includes/classes/Route.php');
 include_once('includes/Router.php');
 
 // alkalmazás gyökér könyvtára a szerveren és URL cím az alkalmazás gyökeréhez
@@ -10,7 +9,7 @@ define('SITE_ROOT', 'http://localhost/webprog2_beadando/');
 $router = new Router();
 
 // Route-k regisztrálása
-$router->register(new Route('/^\/home\/(\w+)$/', 'HomeController', 'index'));
+$router->register(new Route('/(\/home\/)(\w+)$/', 'HomeController', 'index'));
 $router->register(new Route('/^\/home\/(\w+)$/', 'HomeController', 'login'));
 $router->register(new Route('/^\/home\/(\w+)$/', 'HomeController', 'register'));
 $router->register(new Route('/^\/users\/(\w+)$/', 'UserController', 'index'));

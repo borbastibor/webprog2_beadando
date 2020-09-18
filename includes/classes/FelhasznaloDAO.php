@@ -1,5 +1,7 @@
 <?php
 
+namespace webprog\includes\classes;
+
 class FelhasznaloDAO extends AbstractDAO {
 
     public $id = 0;

@@ -1,6 +1,5 @@
 <?php
-include_once('includes/utils.php');
-include_once('classes/Route.php');
+include_once('includes/classes/Route.php');
 
 class Router {
 
@@ -12,6 +11,7 @@ class Router {
 
     public function handleRequest(string $request) {
         $matches = array();
+
         foreach ($this->routes as $route) {
             if (preg_match($route->path, $request, $matches)) {
                 // $matches[0] will always be equal to $request, so we just shift it off
@@ -20,7 +20,7 @@ class Router {
                 $class = new ReflectionClass($route->controller);
                 $method = $class->getMethod($route->method);
                 // we instantiate a new class using the elements of the $matches array
-                $instance = $class->newInstance(...$matches);
+                $instance = $class->newInstanceArgs($matches);
                 // equivalent:
                 // $instance = $class->newInstanceArgs($matches);
                 // then we call the method on the newly instantiated object
@@ -29,6 +29,7 @@ class Router {
                 return;
             }
         }
+
         throw new RuntimeException("Nem volt a kérésnek '$request' megfelelő kiszolgáló.");
     }
 }

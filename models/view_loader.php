@@ -1,5 +1,7 @@
 <?php
 
+namespace webprog;
+
 class View_Loader {
     
     private $data = array();

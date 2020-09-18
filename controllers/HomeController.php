@@ -1,5 +1,10 @@
 <?php
 
+namespace webprog;
+use webprog;
+
+include_once('includes/utils.php');
+
 class HomeController extends AbstractController {
 
 	public $baseName = 'mainpage';

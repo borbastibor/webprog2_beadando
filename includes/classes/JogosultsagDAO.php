@@ -1,5 +1,7 @@
 <?php
 
+namespace webprog\includes\classes;
+
 class JogosultsagDAO {
 
     public $id = 0;
