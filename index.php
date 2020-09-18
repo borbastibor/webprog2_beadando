@@ -9,6 +9,7 @@ define('SITE_ROOT', 'http://localhost/webprog2_beadando/');
 $router = new Router();
 
 // Route-k regisztrálása
+$router->register(new Route('/()()$/', 'HomeController', 'index'));
 $router->register(new Route('/(\/home\/)(\w+)$/', 'HomeController', 'index'));
 $router->register(new Route('/^\/home\/(\w+)$/', 'HomeController', 'login'));
 $router->register(new Route('/^\/home\/(\w+)$/', 'HomeController', 'register'));

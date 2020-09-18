@@ -1,5 +1,7 @@
 <?php
 include_once('includes/classes/Route.php');
+include_once('controllers/HomeController.php');
+include_once('controllers/UsersController.php');
 
 class Router {
 

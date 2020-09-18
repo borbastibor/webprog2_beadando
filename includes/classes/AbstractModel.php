@@ -1,7 +1,5 @@
 <?php
 
-namespace webprog\includes\classes;
-
 abstract class AbstractModel {
 
     private $tablename = '';

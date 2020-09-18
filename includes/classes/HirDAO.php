@@ -1,7 +1,5 @@
 <?php
 
-namespace webprog\includes\classes;
-
 class HirDAO {
 
     public $id = 0;

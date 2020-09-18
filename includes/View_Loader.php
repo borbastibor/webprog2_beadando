@@ -1,7 +1,5 @@
 <?php
 
-namespace webprog;
-
 class View_Loader {
     
     private $data = array();
@@ -10,7 +8,7 @@ class View_Loader {
     private $style = FALSE;
 
     public function __construct($viewName) {
-        $file = SERVER_ROOT . 'views/' . strtolower($viewName) . '.php';
+        $file = 'views/' . strtolower($viewName) . '.php';
 
         if (file_exists($file))
         {
@@ -18,11 +16,11 @@ class View_Loader {
             $this->selectedItems = explode("_", $viewName);
         } 
 
-        $file = SERVER_ROOT . 'css/' . strtolower($viewName) . '.css';
+        $file = 'css/' . strtolower($viewName) . '.css';
 
         if (file_exists($file))
         {
-            $this->style = SITE_ROOT . 'css/' . strtolower($viewName) . '.css';;
+            $this->style = 'css/' . strtolower($viewName) . '.css';
         }        
     }
 
@@ -35,8 +33,6 @@ class View_Loader {
         $this->data['selectedItems'] = $this->selectedItems;
         $this->data['style'] = $this->style;
         $viewData = $this->data;
-        include(SERVER_ROOT . 'views/mainpage.php');
+        include_once('views/mainpage.php');
     }
 }
-
-?>

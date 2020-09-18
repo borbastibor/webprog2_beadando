@@ -1,7 +1,5 @@
 <?php
 
-namespace webprog\includes\classes;
-
 class Velemeny extends AbstarctDAO {
 
     public $id = 0;

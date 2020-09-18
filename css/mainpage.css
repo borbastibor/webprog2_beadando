@@ -1,0 +1,22 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+header {
+    margin: 0px;
+    padding: 5px;
+    width: 100%;
+    background-color: cadetblue;
+    color: black;
+}
+
+footer {
+    margin: 0px;
+    padding: 5px;
+    width: 100%;
+    background-color: cadetblue;
+    color: black;
+    text-align: center;
+}
