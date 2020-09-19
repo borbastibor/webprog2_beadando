@@ -1,21 +1,24 @@
 <?php
+include_once('includes/classes/FelhasznaloDAO.php');
+include_once('includes/classes/AbstractModel.php');
 
 class Felhasznalok extends AbstractModel {
 
+    private $dbconnection;
+
+    public function __construct($dbconnection) {
+        $this->dbconnection = $dbconnection;
+    }
+
     public function getAll(): array {
-        $stmt = $dbconnection->prepare("SELECT * FROM felhasznalok");
+        $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok");
         $stmt->execute();
-        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $resultDAOArray = array();
-        foreach ($result as $item) {
-            $newDao = new FelhasznaloDAO();
-            array_push($resultDAOArray, $newDao->setValues($item));
-        }
-        return $resultDAOArray;
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'FelhasznaloDAO');
+        return $result;
     }
 
     public function getById($id): FelhasznaloDAO {
-        $stmt = $dbconnection->prepare("SELECT * FROM felhasznalok WHERE id = $id");
+        $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok WHERE id = $id");
         $stmt->execute();
         $result = new FelhasznaloDAO();
         $result->setValues($stmt->setFetchMode(PDO::FETCH_ASSOC));

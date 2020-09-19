@@ -5,7 +5,7 @@ include_once('includes/Router.php');
 $router = new Router();
 
 // Route-k regisztrálása
-$router->register(new Route('/()()$/', 'HomeController', 'index'));
+//$router->register(new Route('/()()$/', 'HomeController', 'index'));
 $router->register(new Route('/(\/home\/)(\w+)$/', 'HomeController', 'index'));
 $router->register(new Route('/^\/home\/(\w+)$/', 'HomeController', 'login'));
 $router->register(new Route('/^\/home\/(\w+)$/', 'HomeController', 'register'));

@@ -6,12 +6,16 @@
         <meta name="author" content="Borbás Tibor">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Beadandó feladat</title>
+        <!-- általános stílus lapok beimportálása -->
         <link rel="stylesheet" type="text/css" href="css/mainstyles.css">
+        <link rel="stylesheet" type="text/css" href="css/w3.css">
+        <!-- oldal specifikus stíluslap beimportálása -->
         <link rel="stylesheet" type="text/css" href="<?php echo($viewData['style']); ?>">
+        <!-- jQuery beimportálása -->
         <script src="js/jquery-3.5.1.min.js"></script>
+        <!-- oldal specifikus javascript fájlok beimportálása -->
         <?php $scriptinject = $viewData['jscript'] == FALSE ? '' : $viewData['jscript']; ?>
         <script>
-            // oldal specifikus .js fájlok beimportálása
             jQuery(document).ready(function(){
                 if ("<?php echo($scriptinject); ?>" != '') {
                     $.getScript("<?php echo($scriptinject); ?>");
@@ -21,14 +25,21 @@
         </script>
     </head>
     <body>
-        <header>
-            <h2 class="maintitle">Fiktív szolgálatató Kft.</h2>
+        <header class="w3-container w3-teal">
+            <h2 class="maintitle">Fiktív szolgáltató Kft.</h2>
         </header>
-        <nav>
-            <?php //echo Menu::getMenu($viewData['selectedItems']); ?>
+        <nav class="w3-bar w3-border w3-light-grey">
+            <?php echo(Menu::getMenu()); ?>
+            <?php
+                if (Session::getSessionVariable('username') != '') {
+                    echo('<a href="home/logout" class="w3-bar-item w3-button w3-red w3-right">Kijelentkezés</a>');
+                } else {
+                    echo('<a href="'.SITE_ROOT.'home/login" class="w3-bar-item w3-button w3-red w3-right">Bejelentkezés/Regisztráció</a>');
+                }
+            ?>
         </nav>
         <?php include_once($viewData['render']); ?>
-        <footer> 
+        <footer class="w3-container w3-teal"> 
             &copy; Borbás Tibor <?= date("Y") ?><br>
             E-mail: <a href = "mailto:borbi.tibor@outlook.hu">borbi.tibor@outlook.hu</a>
         </footer>

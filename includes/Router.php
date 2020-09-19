@@ -31,7 +31,7 @@ class Router {
                 return;
             }
         }
-
+        var_dump($request);
         throw new RuntimeException("Nem volt a kérésnek '$request' megfelelő kiszolgáló.");
     }
 }

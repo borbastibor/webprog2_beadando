@@ -1,10 +1,11 @@
 <?php
+include_once('includes/classes/AbstractDAO.php');
 
 class JogosultsagDAO {
 
-    public $id = 0;
-    public $jog_nev = '';
-    public $jog_szint = 0;
+    public $id;
+    public $jog_nev;
+    public $jog_szint;
 
     public function setValues($valuesarray) {
         $this->id = $valuesarray['id'];

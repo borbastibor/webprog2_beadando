@@ -1,4 +1,5 @@
 <?php
+include_once('includes/classes/AbstractDAO.php');
 
 class FelhasznaloDAO extends AbstractDAO {
 

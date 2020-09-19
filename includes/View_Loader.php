@@ -14,7 +14,6 @@ class View_Loader {
         if (file_exists($file))
         {
             $this->render = $file;
-            //$this->selectedItems = explode("_", $viewName);
         } 
 
         $file = 'css/' . strtolower($viewName) . '.css';

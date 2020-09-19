@@ -1,17 +1,18 @@
 <?php
+include_once('includes/classes/AbstractDAO.php');
 
 class HirDAO {
 
-    public $id = 0;
-    public $hir = '';
-    public $felhasznalo_id = 0;
-    public $datum = null;
+    public $id;
+    public $hir;
+    public $felhasznalo_id;
+    public $datum;
 
     public function setValues($valuesarray) {
-        $this->id = $valuesarray['id'];
-        $this->hir = $valuesarray['hir'];
-        $this->felhasznalo_id = $valuesarray['felhasznalo_id'];
-        $this->datum = $valuesarray['datum'];
+        $this->id = $valuesarray['id'] ?? FALSE;
+        $this->hir = $valuesarray['hir'] ?? FALSE;
+        $this->felhasznalo_id = $valuesarray['felhasznalo_id'] ?? FALSE;
+        $this->datum = $valuesarray['datum'] ?? FALSE;
     }
 
 }

@@ -1,34 +1,40 @@
 <?php
+include_once('models/Menuk.php');
+include_once('models/Jogosultsagok.php');
+include_once('includes/database.inc.php');
 
-Class Menu {
-    public static $menu = array(
-        "nyitolap" => array("Nyitólap", "", "111"),    
-        "elerhetoseg" => array("Elérhetőség", "", "100"),    
-        "linkek" => array("Linkek", "", "111"),    
-        "alapinfok" => array("Alapinfók", "elerhetoseg", "111"),    
-        "kiegeszitesek" => array("Kiegészítések", "elerhetoseg", "011"),    
-        "belepes" => array("Belépés", "", "100"),    
-        "kilepes" => array("Kilépés", "", "011"),    
-        "admin" => array("Admin", "", "001")
-    );
+class Menu {
 
-    public static function getMenu($sItems) {
-        $submenu = "";
-        
-        $menu = "<ul>";
-        foreach(self::$menu as $menuindex => $menuitem)       
-        {
-            if($menuitem[1] == "")
-            { $menu.= "<li><a href='".SITE_ROOT.$menuindex."' ".($menuindex==$sItems[0]? "class='selected'":"").">".$menuitem[0]."</a></li>"; }
-            else if($menuitem[1] == $sItems[0])
-            { $submenu .= "<li><a href='".SITE_ROOT.$sItems[0]."/".$menuindex."' ".($menuindex==$sItems[1]? "class='selected'":"").">".$menuitem[0]."</a></li>"; }
+    public static function getMenu() {
+        $result = '';
+        $menuModel = new Menuk(Database::getConnection());
+        $rightModel = new Jogosultsagok(Database::getConnection());
+        $right = $rightModel->getByRightLevel(Session::getSessionVariable('userlevel'));
+        $menuItemList = $menuModel->getByRightId($right->id);
+
+        foreach ($menuItemList as $menuitem) {
+            $children = self::getChildren($menuitem->nev);
+            if ($children == null) {
+                $result .= '<a href="'.$menuitem->url.'" class="w3-bar-item w3-button">'.$menuitem->nev.'</a>';
+            } else {
+                $result .= '<div class="w3-dropdown-hover">'.
+                    '<button class="w3-button">'.$menuitem->nev.'</button>'.
+                    '<div class="w3-dropdown-content w3-bar-block w3-card-4">';
+
+                foreach ($children as $child) {
+                    $result .= '<a href="'.$child->url.'" class="w3-bar-item w3-button">'.$child->nev.'</a>';
+                }
+
+                $result .= '</div></div>';
+            }
         }
-        $menu.="</ul>";
-        
-        if($submenu != "")
-            $submenu = "<ul>".$submenu."</ul>";
-        
-        return $menu.$submenu;;
+
+        return $result;
+    }
+
+    private static function getChildren($itemName): array {
+        $menuModel = new Menuk(Database::getConnection());
+
+        return $menuModel->getByParentName($itemName);
     }
 }
-?>

@@ -19,6 +19,10 @@ class HomeController extends AbstractController {
 		$view = new View_Loader('login');
 	}
 
+	public function logout() {
+		
+	}
+
 	public function register() {
 		$view = new View_Loader('registration');
 	}

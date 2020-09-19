@@ -1,12 +1,13 @@
 <?php
+include_once('includes/classes/AbstractDAO.php');
 
-class Velemeny extends AbstarctDAO {
+class Velemeny extends AbstractDAO {
 
-    public $id = 0;
-    public $velemeny = '';
-    public $nev = '';
-    public $datum = null;
-    public $email = '';
+    public $id;
+    public $velemeny;
+    public $nev;
+    public $datum;
+    public $email;
 
     public function setValues($valuesarray) {
         $this->id = $valuesarray['id'];
