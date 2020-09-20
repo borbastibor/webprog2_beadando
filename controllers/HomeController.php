@@ -1,15 +1,14 @@
 <?php
-include_once('includes/classes/AbstractController.php');
 include_once('includes/View_Loader.php');
 
-class HomeController extends AbstractController {
+class HomeController {
 
 	public $baseName = 'home';
 	public $params;
 
-	public function __construct(string $params) {
-		$this->params = $params;
-	}
+	// public function __construct($params) {
+	// 	$this->params = $params;
+	// }
 
 	public function index() {
 		$view = new View_Loader($this->baseName);
@@ -19,11 +18,12 @@ class HomeController extends AbstractController {
 		$view = new View_Loader('login');
 	}
 
-	public function logout() {
-		
+	public function loginPost($postParams) {
+		echo($this->params);
 	}
 
-	public function register() {
-		$view = new View_Loader('registration');
+	public function logout() {
+		Session::resetSession();
 	}
+
 }

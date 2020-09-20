@@ -5,10 +5,10 @@ include_once('includes/Router.php');
 $router = new Router();
 
 // Route-k regisztrálása
-//$router->register(new Route('/()()$/', 'HomeController', 'index'));
-$router->register(new Route('/(\/home\/)(\w+)$/', 'HomeController', 'index'));
-$router->register(new Route('/^\/home\/(\w+)$/', 'HomeController', 'login'));
-$router->register(new Route('/^\/home\/(\w+)$/', 'HomeController', 'register'));
+//$router->register(new Route('/^()()$/', 'HomeController', 'index'));
+$router->register(new Route('#(home/index)#', 'HomeController', 'index'));
+$router->register(new Route('#(home/login)#', 'HomeController', 'login'));
+$router->register(new Route('#(home/logout)#', 'HomeController', 'logout'));
 $router->register(new Route('/^\/users\/(\w+)$/', 'UserController', 'index'));
 $router->register(new Route('/^\/users\/(\w+)$/', 'UserController', 'edit'));
 $router->register(new Route('/^\/rights\/(\w+)$/', 'RightsController', 'index'));

@@ -1,6 +1,6 @@
 <?php
 
-class CommentsController extends AbstractController {
+class CommentsController {
 
     private $baseName = 'comments';
 

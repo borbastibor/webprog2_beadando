@@ -9,25 +9,25 @@ class View_Loader {
     private $jscript = FALSE;
 
     public function __construct($viewName) {
-        $file = 'views/' . strtolower($viewName) . '.php';
+        $file = SERVER_ROOT.'views/'.strtolower($viewName).'.php';
 
         if (file_exists($file))
         {
             $this->render = $file;
         } 
 
-        $file = 'css/' . strtolower($viewName) . '.css';
+        $file = SERVER_ROOT.'css/'.strtolower($viewName).'.css';
 
         if (file_exists($file))
         {
-            $this->style = 'css/' . strtolower($viewName) . '.css';
+            $this->style = SITE_ROOT.'css/'.strtolower($viewName).'.css';
         }
         
-        $file = 'js/' . strtolower($viewName) . '.js';
+        $file = SERVER_ROOT.'js/'.strtolower($viewName).'.js';
 
         if (file_exists($file))
         {
-            $this->jscript = 'js/' . strtolower($viewName) . '.js';
+            $this->jscript = SITE_ROOT.'js/'.strtolower($viewName).'.js';
         }        
     }
 

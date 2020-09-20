@@ -1,6 +1,6 @@
 <?php
 
-class RightsController extends AbstractController {
+class RightsController {
 
     private $baseName = 'rights';
 

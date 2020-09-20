@@ -18,10 +18,16 @@ class Felhasznalok extends AbstractModel {
     }
 
     public function getById($id): FelhasznaloDAO {
-        $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok WHERE id = $id");
-        $stmt->execute();
-        $result = new FelhasznaloDAO();
-        $result->setValues($stmt->setFetchMode(PDO::FETCH_ASSOC));
+        $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'FelhasznaloDAO');
+        return $result;
+    }
+
+    public function getByUsername($username): FelhasznaloDAO {
+        $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok WHERE bejelentkezes = :username");
+        $stmt->execute([':username' => $username]);
+        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'FelhasznaloDAO');
         return $result;
     }
 

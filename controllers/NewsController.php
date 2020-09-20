@@ -1,6 +1,6 @@
 <?php
 
-class NewsController extends AbstractController {
+class NewsController {
 
     private $baseName = 'news';
 

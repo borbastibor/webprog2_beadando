@@ -7,22 +7,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Beadandó feladat</title>
         <!-- általános stílus lapok beimportálása -->
-        <link rel="stylesheet" type="text/css" href="css/mainstyles.css">
-        <link rel="stylesheet" type="text/css" href="css/w3.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo(SITE_ROOT.'css/w3.css'); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo(SITE_ROOT.'css/mainstyles.css'); ?>">
         <!-- oldal specifikus stíluslap beimportálása -->
         <link rel="stylesheet" type="text/css" href="<?php echo($viewData['style']); ?>">
         <!-- jQuery beimportálása -->
-        <script src="js/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo(SITE_ROOT.'js/jquery-3.5.1.min.js'); ?>"></script>
         <!-- oldal specifikus javascript fájlok beimportálása -->
-        <?php $scriptinject = $viewData['jscript'] == FALSE ? '' : $viewData['jscript']; ?>
-        <script>
-            jQuery(document).ready(function(){
-                if ("<?php echo($scriptinject); ?>" != '') {
-                    $.getScript("<?php echo($scriptinject); ?>");
-                }
-                
-            });
-        </script>
+        <?php 
+            $scriptinject = $viewData['jscript'] == FALSE ? '' : $viewData['jscript'];
+            if ($scriptinject != '') {
+                echo('<script type="text/javascript" src="'.$scriptinject.'"></script>');
+            }
+        ?>
     </head>
     <body>
         <header class="w3-container w3-teal">
@@ -32,7 +29,7 @@
             <?php echo(Menu::getMenu()); ?>
             <?php
                 if (Session::getSessionVariable('username') != '') {
-                    echo('<a href="home/logout" class="w3-bar-item w3-button w3-red w3-right">Kijelentkezés</a>');
+                    echo('<a href="'.SITE_ROOT.'home/logout" class="w3-bar-item w3-button w3-red w3-right">Kijelentkezés</a>');
                 } else {
                     echo('<a href="'.SITE_ROOT.'home/login" class="w3-bar-item w3-button w3-red w3-right">Bejelentkezés/Regisztráció</a>');
                 }

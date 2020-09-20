@@ -1,6 +1,6 @@
 <?php
 
-class Error404Controller extends AbstractController {
+class Error404Controller {
 
 	public $baseName = 'error404';
 

@@ -1,7 +1,6 @@
 <?php
 include_once('includes/classes/Route.php');
 include_once('controllers/HomeController.php');
-include_once('controllers/UsersController.php');
 
 class Router {
 
@@ -22,16 +21,16 @@ class Router {
                 $class = new ReflectionClass($route->controller);
                 $method = $class->getMethod($route->method);
                 // we instantiate a new class using the elements of the $matches array
-                $instance = $class->newInstanceArgs($matches);
+                $instance = $class->newInstance();
                 // equivalent:
                 // $instance = $class->newInstanceArgs($matches);
                 // then we call the method on the newly instantiated object
-                $method->invoke($instance);
+                $method->invokeArgs($instance, $matches);
                 // finally, we return from the function, because we do not want the request to be handled more than once
                 return;
             }
         }
-        var_dump($request);
+
         throw new RuntimeException("Nem volt a kérésnek '$request' megfelelő kiszolgáló.");
     }
 }
