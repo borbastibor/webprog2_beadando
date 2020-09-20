@@ -1,3 +1,7 @@
+<?php
+use includes\Menu;
+use includes\Session;
+?>
 <!DOCTYPE html>
 <html lang="hu">
     <head>

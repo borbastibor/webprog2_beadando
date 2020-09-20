@@ -1,5 +1,5 @@
 <?php
-include_once('includes/classes/AbstractDAO.php');
+namespace includes\classes;
 
 class Velemeny extends AbstractDAO {
 

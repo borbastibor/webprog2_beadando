@@ -1,7 +1,11 @@
 <?php
+namespace includes;
+
 include_once('models/Menuk.php');
 include_once('models/Jogosultsagok.php');
-include_once('includes/database.inc.php');
+
+use models\Menuk;
+use models\Jogosultsagok;
 
 class Menu {
 

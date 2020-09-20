@@ -1,4 +1,7 @@
 <?php
+namespace includes\classes;
+
+use \JsonSerializable;
 
 class Response implements JsonSerializable {
 

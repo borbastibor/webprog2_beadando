@@ -1,4 +1,6 @@
 <?php
+namespace includes\classes;
+
 include_once('includes/classes/AbstractDAO.php');
 
 class MenuDAO extends AbstractDAO {

@@ -1,4 +1,5 @@
 <?php
+namespace includes\classes;
 
 class Route {
     public $path;

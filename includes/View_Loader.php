@@ -1,4 +1,5 @@
 <?php
+namespace includes;
 
 class View_Loader {
     

@@ -1,6 +1,9 @@
 <?php
-include_once('includes/classes/FelhasznaloDAO.php');
-include_once('includes/classes/AbstractModel.php');
+namespace models;
+
+use includes\classes\AbstractModel;
+use includes\classes\FelhasznaloDAO;
+use \PDO;
 
 class Felhasznalok extends AbstractModel {
 

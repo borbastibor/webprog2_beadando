@@ -1,6 +1,11 @@
 <?php
-include_once('includes/classes/Route.php');
+namespace controllers;
+
 include_once('controllers/HomeController.php');
+
+use includes\classes\Route;
+use \ReflectionClass;
+use \RuntimeException;
 
 class Router {
 
@@ -18,7 +23,7 @@ class Router {
                 // $matches[0] will always be equal to $request, so we just shift it off
                 array_shift($matches);
                 // here comes the magic
-                $class = new ReflectionClass($route->controller);
+                $class = new ReflectionClass(__NAMESPACE__.'\\'.$route->controller);
                 $method = $class->getMethod($route->method);
                 // we instantiate a new class using the elements of the $matches array
                 $instance = $class->newInstance();

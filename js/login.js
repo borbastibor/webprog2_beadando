@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('#btn_login').click(function() {
 
         $.ajax({
-            url: '../controllers/AccessController.php',
+            url: 'home/login',
             type: 'POST',
             data: {
                 'login' : 'login',
@@ -19,7 +19,7 @@ $(document).ready(function(){
     $('#btn_register').click(function() {
 
         $.ajax({
-            url: '../controllers/AccessController.php',
+            url: 'home/login',
             type: 'POST',
             data: {
                 'register' : 'register',

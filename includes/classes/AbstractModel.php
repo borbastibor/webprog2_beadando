@@ -1,4 +1,5 @@
 <?php
+namespace includes\classes;
 
 abstract class AbstractModel {
 

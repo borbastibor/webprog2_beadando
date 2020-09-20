@@ -1,8 +1,8 @@
 <?php
-include_once('includes/includes.inc.php');
-include_once('includes/database.inc.php');
-include_once('includes/session.inc.php');
-include_once('includes/menu.inc.php');
+define('SERVER_ROOT', $_SERVER['DOCUMENT_ROOT'].'/webprog2_beadando/');
+define('SITE_ROOT', 'http://localhost/webprog2_beadando/');
 
-// routing
-include_once('includes/routes.inc.php');
+include_once('includes/database_inc.php');
+include_once('includes/session_inc.php');
+include_once('includes/menu_inc.php');
+include_once('includes/routes_inc.php');

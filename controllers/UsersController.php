@@ -1,4 +1,7 @@
 <?php
+namespace controllers;
+
+use includes\View_Loader;
 
 class Nyitolap_Controller
 {
