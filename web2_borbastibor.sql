@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `felhasznalok` (
   `csaladi_nev` varchar(45) NOT NULL,
   `utonev` varchar(45) NOT NULL,
   `bejelentkezes` varchar(12) NOT NULL,
-  `jelszo` varchar(40) NOT NULL,
+  `jelszo` varchar(255) NOT NULL,
   `jog_id` int(10) UNSIGNED NOT NULL,
   FOREIGN KEY (`jog_id`) REFERENCES `jogosultsagok` (`id`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,6 +1,9 @@
 <?php
 namespace models;
 
+include_once('includes/classes/FelhasznaloDAO.php');
+include_once('includes/classes/AbstractModel.php');
+
 use includes\classes\AbstractModel;
 use includes\classes\FelhasznaloDAO;
 use \PDO;
@@ -13,25 +16,34 @@ class Felhasznalok extends AbstractModel {
         $this->dbconnection = $dbconnection;
     }
 
-    public function getAll(): array {
+    public function getAll() {
         $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok");
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'FelhasznaloDAO');
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\FelhasznaloDAO');
+        if ($result == null) {
+            return null;
+        }
         return $result;
     }
 
-    public function getById($id): FelhasznaloDAO {
+    public function getById($id) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok WHERE id = :id");
         $stmt->execute([':id' => $id]);
-        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'FelhasznaloDAO');
-        return $result;
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\FelhasznaloDAO');
+        if ($result == null) {
+            return null;
+        }
+        return $result[0];
     }
 
-    public function getByUsername($username): FelhasznaloDAO {
+    public function getByUsername($username) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok WHERE bejelentkezes = :username");
         $stmt->execute([':username' => $username]);
-        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'FelhasznaloDAO');
-        return $result;
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\FelhasznaloDAO');
+        if ($result == null) {
+            return null;
+        }
+        return $result[0];
     }
 
     public function insert($felhasznalo) {

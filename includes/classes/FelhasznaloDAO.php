@@ -5,12 +5,12 @@ include_once('includes/classes/AbstractDAO.php');
 
 class FelhasznaloDAO extends AbstractDAO {
 
-    public $id = 0;
-    public $csaladi_nev = '';
-    public $utonev = '';
-    public $bejelentkezes = '';
-    public $jelszo = '';
-    public $jog_id = 0;
+    public $id;
+    public $csaladi_nev;
+    public $utonev;
+    public $bejelentkezes;
+    public $jelszo;
+    public $jog_id;
 
     public function setValues($valuearray) {
         $this->id = $valuearray['id'];

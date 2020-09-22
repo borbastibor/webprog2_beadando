@@ -13,7 +13,8 @@ class Menu {
         $result = '';
         $menuModel = new Menuk(Database::getConnection());
         $rightModel = new Jogosultsagok(Database::getConnection());
-        $right = $rightModel->getByRightLevel(Session::getSessionVariable('userlevel'));
+        $ulevel = isset($_SESSION['userlevel']) ? $_SESSION['userlevel'] : 0;
+        $right = $rightModel->getByRightLevel($ulevel);
         $menuItemList = $menuModel->getByRightId($right->id);
 
         foreach ($menuItemList as $menuitem) {

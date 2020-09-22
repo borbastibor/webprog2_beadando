@@ -1,6 +1,6 @@
 <?php
 use includes\Menu;
-use includes\Session;
+
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -17,6 +17,8 @@ use includes\Session;
         <link rel="stylesheet" type="text/css" href="<?php echo($viewData['style']); ?>">
         <!-- jQuery beimportálása -->
         <script type="text/javascript" src="<?php echo(SITE_ROOT.'js/jquery-3.5.1.min.js'); ?>"></script>
+        <!-- main.js beimportálása -->
+        <script type="text/javascript" src="<?php echo(SITE_ROOT.'js/main.js'); ?>"></script>
         <!-- oldal specifikus javascript fájlok beimportálása -->
         <?php 
             $scriptinject = $viewData['jscript'] == FALSE ? '' : $viewData['jscript'];
@@ -30,12 +32,12 @@ use includes\Session;
             <h2 class="maintitle">Fiktív szolgáltató Kft.</h2>
         </header>
         <nav class="w3-bar w3-border w3-light-grey">
-            <?php echo(Menu::getMenu()); ?>
             <?php
-                if (Session::getSessionVariable('username') != '') {
-                    echo('<a href="'.SITE_ROOT.'home/logout" class="w3-bar-item w3-button w3-red w3-right">Kijelentkezés</a>');
+                echo(Menu::getMenu());
+                if (isset($_SESSION['username'])) {
+                    echo('<a href="#" id="btn_logout" class="w3-bar-item w3-button w3-red w3-right">Kijelentkezés</a>');
                 } else {
-                    echo('<a href="'.SITE_ROOT.'home/login" class="w3-bar-item w3-button w3-red w3-right">Bejelentkezés/Regisztráció</a>');
+                    echo('<a href="'.SITE_ROOT.'home/login" class="w3-bar-item w3-button w3-green w3-right">Bejelentkezés/Regisztráció</a>');
                 }
             ?>
         </nav>

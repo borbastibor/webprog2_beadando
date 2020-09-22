@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    /**
+     * Eseménykezelő a bejelentkezés gomb lenyomására
+     */
     $('#btn_login').click(function() {
 
         $.ajax({
@@ -11,11 +14,20 @@ $(document).ready(function(){
             },
             dataType: 'text',
             success: function(response) {
-                alert(response);
+                var msg = JSON.parse(response);
+                if (msg.error != 0) {
+                    $('#login_message_label').html('<p>' + msg.message + '</p>').show();
+                } else {
+                    alert(msg.message);
+                    location.reload();
+                }
             }
         });
     });
     
+    /**
+     * Eseménykezelő a regisztráció gomb lenyomására
+     */
     $('#btn_register').click(function() {
 
         $.ajax({
@@ -30,7 +42,13 @@ $(document).ready(function(){
             },
             dataType: 'text',
             success: function(response) {
-                alert(response);
+                var msg = JSON.parse(response);
+                if (msg.error != 0) {
+                    $('#register_message_label').html('<p>' + msg.message + '</p>').show();
+                } else {
+                    alert(msg.message);
+                    location.reload();
+                }
             }
         });
     });
