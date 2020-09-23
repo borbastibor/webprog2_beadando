@@ -47,7 +47,12 @@ class Felhasznalok extends AbstractModel {
     }
 
     public function insert($felhasznalo) {
-        //TODO
+        if (!$felhasznalo instanceof FelhasznaloDAO) {
+            return false;
+        }
+
+        $stmt = $this->dbconnection->prepare("INSERT INTO felhasznalok (csaladi_nev, utonev, bejelentkezes, jelszo, jog_id) VALUES (:csnev, :unev, :benev, :jelszo, :jid)");
+        return $stmt->execute([':csnev' => $felhasznalo->csaladi_nev, ':unev' => $felhasznalo->utonev, ':benev' => $felhasznalo->bejelentkezes, ':jelszo' => $felhasznalo->jelszo, ':jid' => $felhasznalo->jog_id]);
     }
 
     public function update($felhasznalo) {

@@ -2,7 +2,7 @@
     <div class="w3-container w3-card-4">
         <table class="w3-table">
             <tr>
-                <td>
+                <td style="width:50%;">
                     <div class="w3-container w3-teal w3-center"><h4>Bejelentkezés</h4></div>
                     <form id="loginForm">
                     <p>
@@ -17,7 +17,7 @@
                     <button class="w3-button w3-block w3-green w3-section w3-padding" id="btn_login">Bejelentkezés</button>
                     <div id="login_message_label" class="w3-panel w3-pale-red w3-leftbar w3-rightbar w3-border-red" style="display:none;"></div>
                 </td>
-                <td>
+                <td style="width:50%;">
                     <div class="w3-container w3-teal w3-center"><h4>Regisztráció</h4></div>
                     <form id="registrationForm">
                         <p>

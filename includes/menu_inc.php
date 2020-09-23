@@ -12,16 +12,14 @@ class Menu {
     public static function getMenu() {
         $result = '';
         $menuModel = new Menuk(Database::getConnection());
-        $rightModel = new Jogosultsagok(Database::getConnection());
         $ulevel = isset($_SESSION['userlevel']) ? $_SESSION['userlevel'] : 0;
-        $right = $rightModel->getByRightLevel($ulevel);
-        $menuItemList = $menuModel->getByRightId($right->id);
+        $menuItemList = $menuModel->getAllUpToLevel($ulevel);
 
         foreach ($menuItemList as $menuitem) {
             $children = self::getChildren($menuitem->nev);
-            if ($children == null) {
+            if ($children == null && $menuitem->szulo == '') {
                 $result .= '<a href="'.SITE_ROOT.$menuitem->url.'" class="w3-bar-item w3-button">'.$menuitem->nev.'</a>';
-            } else {
+            } elseif ($children != null && $menuitem->szulo == '') {
                 $result .= '<div class="w3-dropdown-hover">'.
                     '<button class="w3-button">'.$menuitem->nev.'</button>'.
                     '<div class="w3-dropdown-content w3-bar-block w3-card-4">';
@@ -37,7 +35,7 @@ class Menu {
         return $result;
     }
 
-    private static function getChildren($itemName): array {
+    private static function getChildren($itemName) {
         $menuModel = new Menuk(Database::getConnection());
 
         return $menuModel->getByParentName($itemName);

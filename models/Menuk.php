@@ -16,38 +16,75 @@ class Menuk extends AbstractModel {
         $this->dbconnection = $dbconnection;
     }
 
-    public function getAll(): array {
+    public function getAll() {
         $stmt = $this->dbconnection->prepare("SELECT * FROM menu");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+
+        if ($result == null) {
+            return null;
+        }
+
         return $result;
     }
 
-    public function getById($id): MenuDAO {
+    public function getById($id) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE id = :id");
         $stmt->execute([':id' => $id]);
         $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+
+        if ($result == null) {
+            return null;
+        }
+
         return $result[0];
     }
 
-    public function getByName($name): MenuDAO {
+    public function getByName($name) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE nev = :name");
         $stmt->execute([':name' => $name]);
         $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+
+        if ($result == null) {
+            return null;
+        }
+
         return $result[0];
     }
 
-    public function getByParentName($parentname): array {
+    public function getByParentName($parentname) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE szulo = :parentname");
         $stmt->execute([':parentname' => $parentname]);
         $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+
+        if ($result == null) {
+            return null;
+        }
+
         return $result;
     }
 
-    public function getByRightId($rightid): array {
-        $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE jog_id = :rightid");
-        $stmt->execute([':rightid' => $rightid]);
+    public function getByRightLevel($rightlevel) {
+        $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE jog_szint = :rightlevel");
+        $stmt->execute([':rightlevel' => $rightlevel]);
         $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+
+        if ($result == null) {
+            return null;
+        }
+
+        return $result;
+    }
+
+    public function getAllUpToLevel($level) {
+        $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE jog_szint <= :level ORDER BY sorrend");
+        $stmt->execute([':level' => $level]);
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+
+        if ($result == null) {
+            return null;
+        }
+
         return $result;
     }
 

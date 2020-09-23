@@ -10,7 +10,7 @@ class MenuDAO extends AbstractDAO {
     public $nev;
     public $szulo;
     public $sorrend;
-    public $jog_id;
+    public $jog_szint;
 
     public function setValues($valuearray) {
         $this->id = $valuearray['id'];
@@ -18,7 +18,7 @@ class MenuDAO extends AbstractDAO {
         $this->nev = $valuearray['nev'];
         $this->szulo = $valuearray['szulo'];
         $this->sorrend = $valuearray['sorrend'];
-        $this->jog_id = $valuearray['jog_id'];
+        $this->jog_szint = $valuearray['jog_szint'];
     }
 
 }
