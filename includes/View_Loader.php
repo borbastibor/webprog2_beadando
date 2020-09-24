@@ -5,11 +5,11 @@ class View_Loader {
     
     private $data = array();
     private $render = FALSE;
-    private $selectedItems = FALSE;
     private $style = FALSE;
     private $jscript = FALSE;
+    private $userdata = FALSE;
 
-    public function __construct($viewName) {
+    public function __construct($viewName, $userdata = FALSE) {
         $file = SERVER_ROOT.'views/'.strtolower($viewName).'.php';
 
         if (file_exists($file))
@@ -29,18 +29,16 @@ class View_Loader {
         if (file_exists($file))
         {
             $this->jscript = SITE_ROOT.'js/'.strtolower($viewName).'.js';
-        }        
-    }
-
-    public function assign($variable , $value) {
-        $this->data[$variable] = $value;
+        }
+        
+        $this->userdata = $userdata;
     }
 
     public function __destruct() {
         $this->data['render'] = $this->render;
-        $this->data['selectedItems'] = $this->selectedItems;
         $this->data['style'] = $this->style;
         $this->data['jscript'] = $this->jscript;
+        $this->data['data'] = $this->userdata;
         $viewData = $this->data;
         include_once('views/page.tpl.php');
     }

@@ -3,7 +3,7 @@
         <table class="w3-table">
             <tr>
                 <td style="width:50%;">
-                    <div class="w3-container w3-teal w3-center"><h4>Bejelentkezés</h4></div>
+                    <div class="w3-container w3-khaki w3-center"><h4>Bejelentkezés</h4></div>
                     <form id="loginForm">
                     <p>
                         <label>Felhasználónév:</label>
@@ -18,7 +18,7 @@
                     <div id="login_message_label" class="w3-panel w3-pale-red w3-leftbar w3-rightbar w3-border-red" style="display:none;"></div>
                 </td>
                 <td style="width:50%;">
-                    <div class="w3-container w3-teal w3-center"><h4>Regisztráció</h4></div>
+                    <div class="w3-container w3-khaki w3-center"><h4>Regisztráció</h4></div>
                     <form id="registrationForm">
                         <p>
                             <label>Családi név:</label>

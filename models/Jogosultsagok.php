@@ -19,25 +19,17 @@ class Jogosultsagok extends AbstractModel {
     public function getAll() {
         $stmt = $this->dbconnection->prepare("SELECT * FROM jogosultsagok");
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\JogosultsagDAO');
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($result == null) {
-            return null;
-        }
-
-        return $result;
+        return $result ?? null;
     }
 
     public function getById($id) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM jogosultsagok WHERE id = :id");
         $stmt->execute([':id' => $id]);
-        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'includes\classes\JogosultsagDAO');
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($result == null) {
-            return null;
-        }
-
-        return $result[0];
+        return $result ?? null;
     }
 
     public function getByLevel($level) {
@@ -45,11 +37,7 @@ class Jogosultsagok extends AbstractModel {
         $stmt->execute([':level' => $level]);
         $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\JogosultsagDAO');
 
-        if ($result == null) {
-            return null;
-        }
-
-        return $result[0];
+        return $result[0] ?? null;
     }
 
     public function getIdByLevel($level) {
@@ -57,11 +45,7 @@ class Jogosultsagok extends AbstractModel {
         $stmt->execute([':level' => $level]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($result == null) {
-            return null;
-        }
-
-        return $result['id'];
+        return $result['id'] ?? null;
     }
 
     public function getLevelById($id) {
@@ -69,11 +53,7 @@ class Jogosultsagok extends AbstractModel {
         $stmt->execute([':id' => $id]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($result == null) {
-            return null;
-        }
-
-        return $result['jog_szint'];
+        return $result['jog_szint'] ?? null;
     }
 
     public function insert($felhasznalo) {

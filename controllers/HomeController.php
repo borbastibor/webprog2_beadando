@@ -68,8 +68,6 @@ class HomeController {
 					return;
 				}
 
-				var_dump($userDao);
-
 				if (!$userModel->insert($userDao)) {
 					echo(json_encode(new Response(true, 'Nem sikerült a regisztráció!')));
 					return;

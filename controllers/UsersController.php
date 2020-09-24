@@ -11,7 +11,7 @@ class Nyitolap_Controller
 		$view = new View_Loader($this->baseName."_list");
     }
     
-    public function edit($id) {
+    public function edit() {
         $view = new View_Loader($this->baseName."_edit");
     }
 }

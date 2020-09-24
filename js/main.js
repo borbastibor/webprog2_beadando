@@ -11,7 +11,7 @@ $(document).ready(function(){
             success: function(response) {
                 var msg = JSON.parse(response);
                 alert(msg.message);
-                location.reload();
+                window.location.assign('home/index');
             }
         });
 

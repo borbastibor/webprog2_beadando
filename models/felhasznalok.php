@@ -23,7 +23,7 @@ class Felhasznalok extends AbstractModel {
         if ($result == null) {
             return null;
         }
-        return $result;
+        return $result[0];
     }
 
     public function getById($id) {

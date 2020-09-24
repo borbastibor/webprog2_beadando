@@ -2,10 +2,11 @@
 namespace controllers;
 
 include_once('controllers/HomeController.php');
+include_once('controllers/Error404Controller.php');
+include_once('controllers/RightsController.php');
 
 use includes\classes\Route;
 use \ReflectionClass;
-use \RuntimeException;
 
 class Router {
 
@@ -36,6 +37,7 @@ class Router {
             }
         }
 
-        throw new RuntimeException("Nem volt a kérésnek '$request' megfelelő kiszolgáló.");
+        $errorController = new Error404Controller();
+        $errorController->error();
     }
 }
