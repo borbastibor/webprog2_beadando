@@ -2,10 +2,10 @@
 
 Készítsen egy weboldalt egy fiktív cég részére, amely a következő követelményeknek tesz eleget: 
 1.	A weboldalon legyen bejelentkezési és regisztrációs lehetőség. A regisztrált felhasználók olvashatnak és írhatnak véleményeket, híreket. A vélemények, hírek megjelenítésekor jelenítsük meg a létrehozás időpontját és a létrehozó felhasználó bejelentkezési nevét. (3 pont) 
-2.	a, alkalmazza az objektum-orientált PHP elveit
-b, a menüpontok neveit és a menüpontokhoz tartozó oldalak azonosítóját az adatbázisban tárolja,
-c, többszintes menürendszert megvalósít
-d, legalább „látogató”, „regisztrált látogató” és „admin” szerepkör el van különítve. (4 pont)
+2.	1. alkalmazza az objektum-orientált PHP elveit
+    2. a menüpontok neveit és a menüpontokhoz tartozó oldalak azonosítóját az adatbázisban tárolja,
+    3. többszintes menürendszert megvalósít
+    4. legalább „látogató”, „regisztrált látogató” és „admin” szerepkör el van különítve. (4 pont)
 3.	Alkalmazzon a weboldalon egy jQuery és egy Ajax megvalósítást. (2 pont) 
 4.	Készítsen két web-szolgáltatás megvalósítást. Az egyiket SOAP, a másikat RESTful módszerrel. Mind a kettőhöz készítsen egy kliens oldali szkriptet is teszteléshez. (3 pont)
 5.	Alkalmazzon az oldalon egy objektum orientált JavaScript megvalósítást is. (2 pont)
