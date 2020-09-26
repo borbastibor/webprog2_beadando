@@ -20,6 +20,12 @@ $router->register(new Route('#(rights/delete.*)#', 'RightsController', 'delete')
 $router->register(new Route('#(users/index)#', 'UsersController', 'index'));
 $router->register(new Route('#(users/edit.*)#', 'UsersController', 'edit'));
 $router->register(new Route('#(users/delete.*)#', 'UsersController', 'delete'));
+$router->register(new Route('#(news/index)#', 'NewsController', 'index'));
+$router->register(new Route('#(news/edit.*)#', 'NewsController', 'edit'));
+$router->register(new Route('#(news/delete.*)#', 'NewsController', 'delete'));
+$router->register(new Route('#(comments/index)#', 'CommentsController', 'index'));
+$router->register(new Route('#(comments/edit.*)#', 'CommentsController', 'edit'));
+$router->register(new Route('#(comments/delete.*)#', 'CommentsController', 'delete'));
 $router->register(new Route('#(error/error.*)#', 'ErrorController', 'error'));
 
 // Router meghívása a request-el

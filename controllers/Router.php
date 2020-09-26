@@ -5,6 +5,8 @@ include_once('controllers/HomeController.php');
 include_once('controllers/ErrorController.php');
 include_once('controllers/RightsController.php');
 include_once('controllers/UsersController.php');
+include_once('controllers/NewsController.php');
+include_once('controllers/CommentsController.php');
 
 use includes\classes\Route;
 use \ReflectionClass;
