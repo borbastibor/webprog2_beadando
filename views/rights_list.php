@@ -4,29 +4,27 @@
         <div style="margin:10px;">
         <p>
             <h6>
-                <button class="w3-button w3-green" onclick="location.href='<?php echo(SITE_ROOT.'rights/edit?id=0'); ?>';">Új létrehozása</button>
+                <button class="w3-button w3-green w3-round-xxlarge" onclick="location.href='rights/create'">Új létrehozása</button>
             </h6>
         </p> 
-            <table class="w3-table-all w3-centered w3-hoverable">
+            <table class="w3-table-all w3-centered">
                 <tr class="w3-teal">
-                    <th>Jogosultság megnevezése</th>
-                    <th>Szintje</th>
-                    <th>Lehetőségek</th>
+                    <th class="w3-border">Jogosultság megnevezése</th>
+                    <th class="w3-border">Szintje</th>
+                    <th class="w3-border">Lehetőségek</th>
                 </tr>
                 <?php
                     if ($viewData['data'] != FALSE && $viewData['data']['rightlist'] != null) {
                         foreach ($viewData['data']['rightlist'] as $rightitem) {
-                                echo('<tr><td>'.$rightitem['jog_nev'].'</td>');
-                                echo('<td>'.$rightitem['jog_szint'].'</td>');
-                                echo('<td><a href="'.SITE_ROOT.'rights/edit?id='.$rightitem['id'].
-                                    '">Szerkeszt</a>|<a href="'.SITE_ROOT.'rights/delete?id='.$rightitem['id'].'">Eltávolít</a></td></tr>');
+                                echo('<tr><td class="w3-border">'.$rightitem['jog_nev'].'</td>');
+                                echo('<td class="w3-border">'.$rightitem['jog_szint'].'</td>');
+                                echo('<td class="w3-border"><button class="w3-button w3-red w3-round-xxlarge" onclick="location.href=\'rights/delete?id='.$rightitem['id'].'\'">Eltávolít</button></td></tr>');
                         }
                     } else {
                         echo('<tr>');
                         echo('<td colspan="3">Nincs adat!</td>');
                         echo('</tr>');
-                    }
-                    
+                    }  
                 ?>
             </table><br>
         </div> 

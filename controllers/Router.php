@@ -2,8 +2,9 @@
 namespace controllers;
 
 include_once('controllers/HomeController.php');
-include_once('controllers/Error404Controller.php');
+include_once('controllers/ErrorController.php');
 include_once('controllers/RightsController.php');
+include_once('controllers/UsersController.php');
 
 use includes\classes\Route;
 use \ReflectionClass;
@@ -37,7 +38,7 @@ class Router {
             }
         }
 
-        $errorController = new Error404Controller();
-        $errorController->error();
+        $errorController = new ErrorController();
+        $errorController->error('?code=404');
     }
 }

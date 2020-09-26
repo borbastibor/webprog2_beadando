@@ -56,16 +56,64 @@ class Jogosultsagok extends AbstractModel {
         return $result['jog_szint'] ?? null;
     }
 
-    public function insert($felhasznalo) {
-        //TODO
+    public function isNameInRights($name) {
+        $stmt = $this->dbconnection->prepare("SELECT count(*) FROM jogosultsagok WHERE jog_nev = :jnev");
+        $stmt->execute([':jnev' => $name]);
+        $result = $stmt->fetchcolumn();
+
+        if ($result != 0) {
+            return true;
+        }
+
+        return false;
     }
 
-    public function update($felhasznalo) {
-        //TODO
+    public function isLevelInRights($level) {
+        $stmt = $this->dbconnection->prepare("SELECT count(*) FROM jogosultsagok WHERE jog_szint = :jszint");
+        $stmt->execute([':jszint' => $level]);
+        $result = $stmt->fetchcolumn();
+
+        if ($result != 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function insert($jogosultsag) {
+        $stmt = $this->dbconnection->prepare("INSERT INTO jogosultsagok (jog_nev, jog_szint) VALUES (:jnev, :jszint)");
+        $stmt->execute([
+            ':jnev' => $jogosultsag->jog_nev,
+            ':jszint' => $jogosultsag->jog_szint
+        ]);
+
+        if (!$stmt->rowCount()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function update($jogosultsag) {
+        $stmt = $this->dbconnection->prepare("UPDATE jogosultsagok SET jog_nev=:jnev, jog_szint=:jszint WHERE id=:id");
+        $stmt->execute([':jnev' => $jogosultsag->jog_nev, ':jszint' => $jogosultsag->jog_szint, ':id' => $jogosultsag->id]);
+
+        if (!$stmt->rowCount()) {
+            return false;
+        }
+
+        return true;
     }
 
     public function delete($id) {
-        //TODO
+        $stmt = $this->dbconnection->prepare("DELETE FROM jogosultsagok WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+
+        if (!$stmt->rowCount()) {
+            return false;
+        }
+
+        return true;
     }
 
 }

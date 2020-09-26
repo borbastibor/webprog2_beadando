@@ -19,31 +19,37 @@ class Felhasznalok extends AbstractModel {
     public function getAll() {
         $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok");
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\FelhasznaloDAO');
-        if ($result == null) {
-            return null;
-        }
-        return $result[0];
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result ?? null;
     }
 
     public function getById($id) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok WHERE id = :id");
         $stmt->execute([':id' => $id]);
         $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\FelhasznaloDAO');
-        if ($result == null) {
-            return null;
-        }
-        return $result[0];
+
+        return $result[0] ?? null;
     }
 
     public function getByUsername($username) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM felhasznalok WHERE bejelentkezes = :username");
         $stmt->execute([':username' => $username]);
         $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\FelhasznaloDAO');
-        if ($result == null) {
-            return null;
+       
+        return $result[0] ?? null;
+    }
+
+    public function isUsernameInUsers($name) {
+        $stmt = $this->dbconnection->prepare("SELECT count(*) FROM felhasznalok WHERE bejelentkezes = :unev");
+        $stmt->execute([':unev' => $name]);
+        $result = $stmt->fetchcolumn();
+
+        if ($result != 0) {
+            return true;
         }
-        return $result[0];
+
+        return false;
     }
 
     public function insert($felhasznalo) {
@@ -52,15 +58,52 @@ class Felhasznalok extends AbstractModel {
         }
 
         $stmt = $this->dbconnection->prepare("INSERT INTO felhasznalok (csaladi_nev, utonev, bejelentkezes, jelszo, jog_id) VALUES (:csnev, :unev, :benev, :jelszo, :jid)");
-        return $stmt->execute([':csnev' => $felhasznalo->csaladi_nev, ':unev' => $felhasznalo->utonev, ':benev' => $felhasznalo->bejelentkezes, ':jelszo' => $felhasznalo->jelszo, ':jid' => $felhasznalo->jog_id]);
+        $stmt->execute([
+            ':csnev' => $felhasznalo->csaladi_nev,
+            ':unev' => $felhasznalo->utonev,
+            ':benev' => $felhasznalo->bejelentkezes,
+            ':jelszo' => $felhasznalo->jelszo,
+            ':jid' => $felhasznalo->jog_id
+        ]);
+
+        if (!$stmt->rowCount()) {
+            return false;
+        }
+
+        return true;
     }
 
     public function update($felhasznalo) {
-        //TODO
+        if (!$felhasznalo instanceof FelhasznaloDAO) {
+            return false;
+        }
+
+        $stmt = $this->dbconnection->prepare("UPDATE felhasznalok SET csaladi_nev=:csnev, utonev=:unev, bejelentkezes=:fnev, jelszo=:pswd, jog_id=:jid WHERE id=:id");
+        $stmt->execute([
+            ':csnev' => $felhasznalo->csaladi_nev,
+            ':unev' => $felhasznalo->utonev,
+            ':fnev' => $felhasznalo->bejelentkezes,
+            ':pswd' => $felhasznalo->jelszo,
+            ':jid' => $felhasznalo->jog_id,
+            ':id' => $felhasznalo->id
+        ]);
+
+        if (!$stmt->rowCount()) {
+            return false;
+        }
+
+        return true;
     }
 
     public function delete($id) {
-        //TODO
+        $stmt = $this->dbconnection->prepare("DELETE FROM felhasznalok WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+
+        if (!$stmt->rowCount()) {
+            return false;
+        }
+
+        return true;
     }
 
 }

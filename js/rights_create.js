@@ -1,16 +1,15 @@
 $(document).ready(function(){
-    $('#btn_save_right').click(function() {
+    $('#btn_save_right').click(function(evt) {
         if ($('#right_name').val() == '' || $('#right_level').val() == '') {
             $('#right_edit_message_label').html('<p>Nincs minden mező kitöltve!</p>').show();
             return;
         }
 
         $.ajax({
-            url: 'rights/edit',
+            url: 'rights/create',
             type: 'POST',
             data: {
-                'edit_right' : 'edit_right',
-                'right_id' : $('#right_id').val(),
+                'create_right' : 'create_right',
                 'right_name' : $('#right_name').val(),
                 'right_level' : $('#right_level').val()
             },
@@ -21,9 +20,10 @@ $(document).ready(function(){
                     $('#right_edit_message_label').html('<p>' + msg.message + '</p>').show();
                 } else {
                     alert(msg.message);
-                    location.reload();
                 }
             }
         });
+        evt.preventDefault();
+        location.assign('rights/index');
     });
 });
