@@ -17,8 +17,14 @@ use models\Jogosultsagok;
 
 class HomeController {
 
-	public $baseName = 'home';
-	public $params;
+	private $baseName = 'home';
+	private $rightsModel;
+	private $userModel;
+
+	public function __construct() {
+		$this->userModel = new Felhasznalok(Database::getConnection());
+		$this->rightModel = new Jogosultsagok(Database::getConnection());
+	}
 
 	/**
 	 * index metódus - betölti be a nyitólapot
@@ -32,14 +38,13 @@ class HomeController {
 	 * illetve kezeli a bejelentkezés és regisztráció során a POST kéréseket
 	 */
 	public function login() {
-		$userModel = new Felhasznalok(Database::getConnection());
-		$rightModel = new Jogosultsagok(Database::getConnection());
+		
 		if ($_POST) {
 			if (isset($_POST['login'])) {
 				// Ha login POST...
-				$user = $userModel->getByUsername($_POST['log_username']);
+				$user = $this->userModel->getByUsername($_POST['log_username']);
 				if ($user != FALSE) {
-					$right = $rightModel->getLevelById($user->jog_id);
+					$right = $this->rightModel->getLevelById($user->jog_id);
 					$givenPswd = $_POST['log_pswd'];
 					if (!password_verify($givenPswd,$user->jelszo)) {
 						echo(json_encode(new Response(true, 'Hibás jelszó!')));
@@ -61,14 +66,14 @@ class HomeController {
 				$userDao->utonev = $_POST['reg_firstname'];
 				$userDao->bejelentkezes = $_POST['reg_username'];
 				$userDao->jelszo = password_hash($_POST['reg_pswd'], PASSWORD_DEFAULT);
-				$userDao->jog_id = $rightModel->getIdByLevel(1);
+				$userDao->jog_id = $this->rightModel->getIdByLevel(1);
 
-				if ($userModel->getByUsername($userDao->bejelentkezes) != null) {
+				if ($this->userModel->getByUsername($userDao->bejelentkezes) != null) {
 					echo(json_encode(new Response(true, 'Már létezik ilyen felhasználónév!')));
 					return;
 				}
 
-				if (!$userModel->insert($userDao)) {
+				if (!$this->userModel->insert($userDao)) {
 					echo(json_encode(new Response(true, 'Nem sikerült a regisztráció!')));
 					return;
 				}

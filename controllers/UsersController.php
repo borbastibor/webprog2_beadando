@@ -16,6 +16,13 @@ class UsersController {
 
     private $baseName = 'user';
     private $rightLevel = 100;
+    private $rightsModel;
+    private $usersModel;
+
+    public function __construct() {
+        $this->usersModel = new Felhasznalok(Database::getConnection());
+        $this->rightsModel = new Jogosultsagok(Database::getConnection());
+    }
 
     /**
      * index metódus a listanézetet tölti be
@@ -36,7 +43,6 @@ class UsersController {
         }
         if ($_POST) {
             if (isset($_POST['edit_user'])) {
-                $usersModel = new Felhasznalok(Database::getConnection());
                 $userDao = new FelhasznaloDAO();
                 $userDao->id = $_POST['id'];
                 $userDao->csaladi_nev = $_POST['csaladi_nev'];
@@ -44,14 +50,14 @@ class UsersController {
                 $userDao->bejelentkezes = $_POST['bejelentkezes'];
                 $userDao->jelszo = password_hash($_POST['jelszo'], PASSWORD_DEFAULT);
                 $userDao->jog_id = $_POST['jog_id']; 
-                $usernameExists = $usersModel->isUsernameInUsers($userDao->bejelentkezes);
+                $usernameExists = $this->usersModel->isUsernameInUsers($userDao->bejelentkezes);
 
                 if ($userDao->id == 0) {
                     if ($usernameExists) {
                         echo(json_encode(true, 'A megadott felhasználónév már létezik!'));
                         return;
                     } else {
-                        if ($usersModel->insert($userDao)) {
+                        if ($this->usersModel->insert($userDao)) {
                             echo(json_encode(false, 'A beszúrás sikeres volt!'));
                             return;
                         } else {
@@ -60,7 +66,7 @@ class UsersController {
                         }
                     }
                 } else {
-                    $oldUser = $usersModel->getById($userDao->id);
+                    $oldUser = $this->usersModel->getById($userDao->id);
                     if ($userDao->jelszo == '') {
                         $userDao->jelszo = $oldUser->jelszo;
                     }
@@ -68,7 +74,7 @@ class UsersController {
                         echo(json_encode(true, 'A megadott felhasználónév már létezik!'));
                         return;
                     } else {
-                        if ($usersModel->update($userDao)) {
+                        if ($this->usersModel->update($userDao)) {
                             echo(json_encode(false, 'A módosítás sikeres volt!'));
                             return;
                         } else {
@@ -80,9 +86,8 @@ class UsersController {
             }
         } else {
             $pArray = $this->getParamArray($param);
-            $rightsModel = new Jogosultsagok(Database::getConnection());
             $data['userdata'] = $this->createArrayForSingle($pArray['id']);
-            $data['jogok'] = $rightsModel->getAll();
+            $data['jogok'] = $this->rightsModel->getAll();
             $view = new View_Loader($this->baseName.'_edit', $data);
         }
         
@@ -97,9 +102,8 @@ class UsersController {
         } 
         if ($_POST) {
             if (isset($_POST['delete_user'])) {
-                $usersModel = new Felhasznalok(Database::getConnection());
                 
-                if (!$usersModel->delete($_POST['id'])) {
+                if (!$this->usersModel->delete($_POST['id'])) {
                     echo(json_encode(new Response(true, 'Nem sikerült a törlés!')));
                     return;
                 } else {
@@ -141,15 +145,13 @@ class UsersController {
      * createArrayForSingle metódus visszatér a szerkesztési nézethez szükséges adatokkal
      */
     private function createArrayForSingle($id) {
-        $usersModel = new Felhasznalok(Database::getConnection());
-        $rightsModel = new Jogosultsagok(Database::getConnection());
-        $singleUser = $usersModel->getById($id);
+        $singleUser = $this->usersModel->getById($id);
 
         if ($singleUser == null) {
             return null;
         }
 
-        $rightItem = $rightsModel->getById($singleUser->jog_id);
+        $rightItem = $this->rightsModel->getById($singleUser->jog_id);
         $rightName = $rightItem == null ? '' : $rightItem['jog_nev'];
         $result = array(
             'id' => $singleUser->id,
@@ -167,16 +169,14 @@ class UsersController {
      */
     private function createArrayForAll() {
         $result = array();
-        $usersModel = new Felhasznalok(Database::getConnection());
-        $rightsModel = new Jogosultsagok(Database::getConnection());
-        $allUser = $usersModel->getAll();
+        $allUser = $this->usersModel->getAll();
 
         if ($allUser == null) {
             return null;
         }
 
         foreach ($allUser as $useritem) {
-            $rightItem = $rightsModel->getById($useritem['jog_id']);
+            $rightItem = $this->rightsModel->getById($useritem['jog_id']);
             $rightName = $rightItem == null ? '' : $rightItem['jog_nev'];
             array_push($result, array(
                 'id' => $useritem['id'],

@@ -7,7 +7,7 @@ use includes\View_Loader;
 
 class ErrorController {
 
-	public $baseName = 'error';
+	private $baseName = 'error';
 
 	public function error($param) {
 		$pArray = $this->getParamArray($param);

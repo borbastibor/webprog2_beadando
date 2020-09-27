@@ -14,13 +14,17 @@ class RightsController {
 
     private $baseName = 'rights';
     private $rightLevel = 100;
+    private $rightsModel;
+
+    public function __construct() {
+        $this->rightsModel = new Jogosultsagok(Database::getConnection());
+    }
 
     public function index() {
         if (!$this->isAuthorized()) {
             header('Location: error/error?code=auth');
         }
-        $rightsModel = new Jogosultsagok(Database::getConnection());
-        $view = new View_Loader($this->baseName.'_list', ['rightlist' => $rightsModel->getAll()]);
+        $view = new View_Loader($this->baseName.'_list', ['rightlist' => $this->rightsModel->getAll()]);
     }
 
     public function create() {
@@ -29,12 +33,11 @@ class RightsController {
         }
         if ($_POST) {
             if (isset($_POST['create_right'])) {
-                $rightsModel = new Jogosultsagok(Database::getConnection());
                 $jogDao = new JogosultsagDAO();
                 $jogDao->jog_nev = $_POST['right_name'];
                 $jogDao->jog_szint = $_POST['right_level'];
-                $right_name_exists = $rightsModel->isNameInRights($jogDao->jog_nev);
-                $right_level_exists = $rightsModel->isLevelInRights($jogDao->jog_szint);
+                $right_name_exists = $this->rightsModel->isNameInRights($jogDao->jog_nev);
+                $right_level_exists = $this->rightsModel->isLevelInRights($jogDao->jog_szint);
 
                 if ($right_level_exists) {
                     echo(json_encode(new Response(true, 'Ez jogosultság szint már létezik!')));
@@ -43,7 +46,7 @@ class RightsController {
                     echo(json_encode(new Response(true, 'Ez jogosultság név már létezik!')));
                     return;
                 }
-                if ($rightsModel->insert($jogDao)) {
+                if ($this->rightsModel->insert($jogDao)) {
                     echo(json_encode(new Response(false, 'A beszúrás sikeres volt!')));
                     return;
                 } else {
@@ -63,9 +66,8 @@ class RightsController {
         } 
         if ($_POST) {
             if (isset($_POST['delete_right'])) {
-                $rightsModel = new Jogosultsagok(Database::getConnection());
                 
-                if (!$rightsModel->delete($_POST['id'])) {
+                if (!$this->rightsModel->delete($_POST['id'])) {
                     echo(json_encode(new Response(true, 'Nem sikerült a törlés!')));
                     return;
                 } else {
@@ -75,8 +77,7 @@ class RightsController {
             }
         } else {
             $pArray = $this->getParamArray($param);
-            $rightsModel = new Jogosultsagok(Database::getConnection());
-            $view = new View_Loader($this->baseName.'_delete', $rightsModel->getById($pArray['id']) ?? null);
+            $view = new View_Loader($this->baseName.'_delete', $this->rightsModel->getById($pArray['id']) ?? null);
         }
     }
 
