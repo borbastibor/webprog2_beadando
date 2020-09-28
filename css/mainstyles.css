@@ -30,3 +30,16 @@ th {
     text-align: center;
     font-weight: bold;
 }
+
+.bold-font {
+    font-weight: bold;
+}
+
+.mbottom {
+    margin-bottom: 5px;
+}
+
+.text-justified {
+    text-align: justify;
+    text-justify: inter-word;
+}

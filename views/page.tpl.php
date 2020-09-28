@@ -28,8 +28,13 @@ use includes\Menu;
         ?>
     </head>
     <body>
-        <header class="w3-container w3-teal">
-            <h2 class="maintitle">Fiktív szolgáltató Kft.</h2>
+        <header class="w3-bar w3-teal">
+            <span><h2 class="w3-bar-item maintitle">Fiktív szolgáltató Kft.</h2></span>
+            <?php
+                if (isset($_SESSION['username'])) {
+                    echo('<span class="w3-bar-item w3-right">Üdvözöljük '.$_SESSION['username'].'!</span>');
+                }
+            ?>
         </header>
         <nav class="w3-bar w3-border w3-light-grey">
             <?php
