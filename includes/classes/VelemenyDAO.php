@@ -5,14 +5,14 @@ class Velemeny extends AbstractDAO {
 
     public $id;
     public $velemeny;
-    public $nev;
+    public $felhasznalo_id;
     public $datum;
     public $email;
 
     public function setValues($valuesarray) {
         $this->id = $valuesarray['id'];
         $this->velemeny = $valuesarray['velemeny'];
-        $this->nev = $valuesarray['nev'];
+        $this->nev = $valuesarray['felhasznalo_id'];
         $this->datum = $valuesarray['datum'];
         $this->email = $valuesarray['email'];
     }

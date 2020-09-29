@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `velemenyek` (
    `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
    `velemeny` text NOT NULL,
    `datum` timestamp NOT NULL,
-   `nev` varchar(50) NOT NULL,
-   `email` varchar(50) NOT NULL
+   `email` varchar(50) NOT NULL,
+   `felhasznalo_id` int(10) UNSIGNED,
+   FOREIGN KEY (felhasznalo_id) REFERENCES felhasznalok(id) ON DELETE SET NULL
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
