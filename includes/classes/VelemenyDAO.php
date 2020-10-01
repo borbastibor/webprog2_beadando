@@ -1,7 +1,7 @@
 <?php
 namespace includes\classes;
 
-class Velemeny extends AbstractDAO {
+class VelemenyDAO extends AbstractDAO {
 
     public $id;
     public $velemeny;
