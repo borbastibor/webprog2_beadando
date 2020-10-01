@@ -4,12 +4,12 @@
         <div style="margin:10px;">
         <?php
             if (isset($_SESSION['userlevel']) && $_SESSION['userlevel'] >= 2) {
-                echo('<p><h6><button class="w3-button w3-green w3-round-xxlarge" onclick="location.href=\'comments/edit\'">Új létrehozása</button></h6></p>');
+                echo('<p><h6><button class="w3-button w3-green w3-round-xxlarge" onclick="location.href=\'comments/edit?id=0\'">Új létrehozása</button></h6></p>');
             }
 
             if ($viewData['data'] != null) {
                 foreach ($viewData['data'] as $commentsitem) {
-                    if ($_SESSION['userlevel'] >= 2) {
+                    if (isset($_SESSION['userlevel']) && $_SESSION['userlevel'] >= 2) {
                         $controlwidgets = '<a href="'.SITE_ROOT.'comments/delete?id='.$commentsitem['id'].'"><span class="w3-badge w3-red w3-right">X</span></a><a href="'.SITE_ROOT.'comments/edit?id='.$commentsitem['id'].'"><span class="w3-badge w3-orange w3-right">E</span></a>';
                     } else {
                         $controlwidgets = '';

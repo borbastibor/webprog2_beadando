@@ -28,14 +28,14 @@
                 </p>
                 <p>
                     <label>E-mail cím</label>
-                    <input type="email" class="w3-input w3-border w3-margin-bottom" rows="10" id="email" placeholder="email..." value="<?php
+                    <input class="w3-input w3-border w3-margin-bottom" type="email" id="email" placeholder="email..." value="<?php
                         if ($viewData['data'] != null) {
                             echo($viewData['data']['email']);
                         }
                     ?>" required>
                 </p>
             </form>
-            <button class="w3-button w3-block w3-green w3-section w3-padding" id="btn_save_news">Vélemény mentése</button>
+            <button class="w3-button w3-block w3-green w3-section w3-padding" id="btn_save_comment">Vélemény mentése</button>
             <div id="comment_edit_message_label" class="w3-panel w3-pale-red w3-leftbar w3-rightbar w3-border-red" style="display:none;"></div>
         </div>
     </div>

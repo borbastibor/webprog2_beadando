@@ -43,7 +43,7 @@ class Velemenyek extends AbstractModel {
     public function insert($velemeny) {
         $stmt = $this->dbconnection->prepare("INSERT INTO velemenyek (velemeny, datum, email, felhasznalo_id) VALUES (:comment, :datum, :email, :userid)");
         $stmt->execute([
-            ':velemeny' => $velemeny->velemeny,
+            ':comment' => $velemeny->velemeny,
             ':datum' => $velemeny->datum,
             ':email' => $velemeny->email,
             ':userid' => $velemeny->felhasznalo_id

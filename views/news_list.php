@@ -9,7 +9,7 @@
 
             if ($viewData['data']['newslist'] != null) {
                 foreach ($viewData['data']['newslist'] as $newsitem) {
-                    if ($_SESSION['userlevel'] >= 2) {
+                    if (isset($_SESSION['userlevel']) && $_SESSION['userlevel'] >= 2) {
                         $controlwidgets = '<a href="'.SITE_ROOT.'news/delete?id='.$newsitem['id'].'"><span class="w3-badge w3-red w3-right">X</span></a><a href="'.SITE_ROOT.'news/edit?id='.$newsitem['id'].'"><span class="w3-badge w3-orange w3-right">E</span></a>';
                     } else {
                         $controlwidgets = '';

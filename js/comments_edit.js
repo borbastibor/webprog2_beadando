@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('#btn_save_comment').click(function(evt) {
-        if ($('#cim').val() == '' || $('#hir').val() == '') {
-            $('#news_edit_message_label').html('<p>Nincs minden mező kitöltve!</p>').show();
+        if ($('#velemeny').val() == '' || $('#email').val() == '') {
+            $('#comment_edit_message_label').html('<p>Nincs minden mező kitöltve!</p>').show();
             return;
         }
 

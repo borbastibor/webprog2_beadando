@@ -52,6 +52,7 @@ class NewsController {
         if (!$this->isAuthorized()) {
             header('Location: error/error?code=auth');
         }
+        
         if ($_POST) {
             if (isset($_POST['edit_news'])) {
                 $hirDao = new HirDAO();

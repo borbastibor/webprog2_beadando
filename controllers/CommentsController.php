@@ -16,7 +16,7 @@ class CommentsController {
 
     private $baseName = 'comments';
     private $viewLevel = 0;
-    private $newsModel;
+    private $commentsModel;
     private $usersModel;
     private $rightsModel;
 
@@ -51,17 +51,18 @@ class CommentsController {
         if (!$this->isAuthorized()) {
             header('Location: error/error?code=auth');
         }
+
         if ($_POST) {
             if (isset($_POST['edit_comment'])) {
                 $velemenyDao = new VelemenyDAO();
                 $velemenyDao->id = $_POST['id'];
-                $velemenyDao->cim = $_POST['velemeny'];
-                $velemenyDao->hir = $_POST['email'];
+                $velemenyDao->velemeny = $_POST['velemeny'];
+                $velemenyDao->email = $_POST['email'];
                 $velemenyDao->datum = date('Y-m-d H:i:s');
                 $velemenyDao->felhasznalo_id = $this->usersModel->getByUsername($_SESSION['username'])->id;
-                
+
                 if ($velemenyDao->id == 0) {
-                    if ($this->newsModel->insert($velemenyDao)) {
+                    if ($this->commentsModel->insert($velemenyDao)) {
                         echo(json_encode(new Response(false, 'A beszúrás sikeres volt!')));
                         return;
                     } else {
@@ -69,7 +70,7 @@ class CommentsController {
                         return;
                     }
                 } else {
-                    if ($this->newsModel->update($velemenyDao)) {
+                    if ($this->commentsModel->update($velemenyDao)) {
                         echo(json_encode(new Response(false, 'A módosítás sikeres volt!')));
                         return;
                     } else {
@@ -102,7 +103,16 @@ class CommentsController {
             }
         } else {
             $pArray = $this->getParamArray($param);
-            $view = new View_Loader($this->baseName.'_delete', $this->commentsModel->getById($pArray['id']) ?? null);
+            $comment = $this->commentsModel->getById($pArray['id']) ?? null;
+            $user = $this->usersModel->getById($comment['felhasznalo_id']) ?? null;
+            $dataarray = [
+                'id' => $comment['id'],
+                'velemeny' => $comment['velemeny'],
+                'datum' => $comment['datum'],
+                'email' => $comment['email'],
+                'felhasznalo_nev' => $user->bejelentkezes
+            ];
+            $view = new View_Loader($this->baseName.'_delete', $dataarray);
         }
     }
 
