@@ -2,9 +2,9 @@
 namespace models;
 
 include_once('includes/classes/AbstractModel.php');
-include_once('includes/classes/HirDAO.php');
+include_once('includes/classes/HirDTO.php');
 
-use includes\classes\HirDAO;
+use includes\classes\HirDTO;
 use includes\classes\AbstractModel;
 use \PDO;
 
@@ -35,7 +35,7 @@ class Hirek extends AbstractModel {
     public function getByUser($userid) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM hirek WHERE felhasznalo_id = :uid");
         $stmt->execute([':uid' => $userid]);
-        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\HirDAO');
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\HirDTO');
 
         return $result[0] ?? null;
     }

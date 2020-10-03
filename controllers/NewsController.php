@@ -4,7 +4,7 @@ namespace controllers;
 include_once('includes/View_Loader.php');
 include_once('models/Hirek.php');
 
-use includes\classes\HirDAO;
+use includes\classes\HirDTO;
 use includes\classes\Response;
 use includes\Database;
 use includes\View_Loader;
@@ -55,15 +55,15 @@ class NewsController {
         
         if ($_POST) {
             if (isset($_POST['edit_news'])) {
-                $hirDao = new HirDAO();
-                $hirDao->id = $_POST['id'];
-                $hirDao->cim = $_POST['cim'];
-                $hirDao->hir = $_POST['hir'];
-                $hirDao->datum = date('Y-m-d H:i:s');
-                $hirDao->felhasznalo_id = $this->usersModel->getByUsername($_SESSION['username'])->id;
+                $HirDTO = new HirDTO();
+                $HirDTO->id = $_POST['id'];
+                $HirDTO->cim = $_POST['cim'];
+                $HirDTO->hir = $_POST['hir'];
+                $HirDTO->datum = date('Y-m-d H:i:s');
+                $HirDTO->felhasznalo_id = $this->usersModel->getByUsername($_SESSION['username'])->id;
                 
-                if ($hirDao->id == 0) {
-                    if ($this->newsModel->insert($hirDao)) {
+                if ($HirDTO->id == 0) {
+                    if ($this->newsModel->insert($HirDTO)) {
                         echo(json_encode(new Response(false, 'A beszúrás sikeres volt!')));
                         return;
                     } else {
@@ -71,7 +71,7 @@ class NewsController {
                         return;
                     }
                 } else {
-                    if ($this->newsModel->update($hirDao)) {
+                    if ($this->newsModel->update($HirDTO)) {
                         echo(json_encode(new Response(false, 'A módosítás sikeres volt!')));
                         return;
                     } else {

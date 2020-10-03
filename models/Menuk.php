@@ -2,10 +2,10 @@
 namespace models;
 
 include_once('includes/classes/AbstractModel.php');
-include_once('includes/classes/MenuDAO.php');
+include_once('includes/classes/MenuDTO.php');
 
 use includes\classes\AbstractModel;
-use includes\classes\MenuDAO;
+use includes\classes\MenuDTO;
 use \PDO;
 
 class Menuk extends AbstractModel {
@@ -19,7 +19,7 @@ class Menuk extends AbstractModel {
     public function getAll() {
         $stmt = $this->dbconnection->prepare("SELECT * FROM menu");
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDTO');
 
         if ($result == null) {
             return null;
@@ -31,7 +31,7 @@ class Menuk extends AbstractModel {
     public function getById($id) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE id = :id");
         $stmt->execute([':id' => $id]);
-        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'includes\classes\MenuDTO');
 
         if ($result == null) {
             return null;
@@ -43,7 +43,7 @@ class Menuk extends AbstractModel {
     public function getByName($name) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE nev = :name");
         $stmt->execute([':name' => $name]);
-        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, 'includes\classes\MenuDTO');
 
         if ($result == null) {
             return null;
@@ -55,7 +55,7 @@ class Menuk extends AbstractModel {
     public function getByParentName($parentname) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE szulo = :parentname");
         $stmt->execute([':parentname' => $parentname]);
-        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDTO');
 
         if ($result == null) {
             return null;
@@ -67,7 +67,7 @@ class Menuk extends AbstractModel {
     public function getByRightLevel($rightlevel) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE jog_szint = :rightlevel");
         $stmt->execute([':rightlevel' => $rightlevel]);
-        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDTO');
 
         if ($result == null) {
             return null;
@@ -79,7 +79,7 @@ class Menuk extends AbstractModel {
     public function getAllUpToLevel($level) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM menu WHERE jog_szint <= :level ORDER BY sorrend");
         $stmt->execute([':level' => $level]);
-        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDAO');
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\MenuDTO');
 
         if ($result == null) {
             return null;

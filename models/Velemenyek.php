@@ -2,9 +2,9 @@
 namespace models;
 
 include_once('includes/classes/AbstractModel.php');
-include_once('includes/classes/VelemenyDAO.php');
+include_once('includes/classes/VelemenyDTO.php');
 
-use includes\classes\VelemenyDAO;
+use includes\classes\VelemenyDTO;
 use includes\classes\AbstractModel;
 use \PDO;
 
@@ -35,7 +35,7 @@ class Velemenyek extends AbstractModel {
     public function getByUser($userid) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM velemenyek WHERE felhasznalo_id = :uid");
         $stmt->execute([':uid' => $userid]);
-        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\velemenyDAO');
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\VelemenyDTO');
 
         return $result[0] ?? null;
     }

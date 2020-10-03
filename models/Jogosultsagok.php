@@ -2,9 +2,9 @@
 namespace models;
 
 include_once('includes/classes/AbstractModel.php');
-include_once('includes/classes/JogosultsagDAO.php');
+include_once('includes/classes/JogosultsagDTO.php');
 
-use includes\classes\JogosultsagDAO;
+use includes\classes\JogosultsagDTO;
 use includes\classes\AbstractModel;
 use \PDO;
 
@@ -35,7 +35,7 @@ class Jogosultsagok extends AbstractModel {
     public function getByLevel($level) {
         $stmt = $this->dbconnection->prepare("SELECT * FROM jogosultsagok WHERE jog_szint = :level");
         $stmt->execute([':level' => $level]);
-        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\JogosultsagDAO');
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'includes\classes\JogosultsagDTO');
 
         return $result[0] ?? null;
     }

@@ -4,7 +4,7 @@ namespace controllers;
 include_once('includes/View_Loader.php');
 include_once('models/Jogosultsagok.php');
 
-use includes\classes\JogosultsagDAO;
+use includes\classes\JogosultsagDTO;
 use includes\classes\Response;
 use includes\Database;
 use includes\View_Loader;
@@ -33,7 +33,7 @@ class RightsController {
         }
         if ($_POST) {
             if (isset($_POST['create_right'])) {
-                $jogDao = new JogosultsagDAO();
+                $jogDao = new JogosultsagDTO();
                 $jogDao->jog_nev = $_POST['right_name'];
                 $jogDao->jog_szint = $_POST['right_level'];
                 $right_name_exists = $this->rightsModel->isNameInRights($jogDao->jog_nev);

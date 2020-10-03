@@ -5,10 +5,10 @@ include_once('includes/View_Loader.php');
 include_once('models/Felhasznalok.php');
 include_once('models/Jogosultsagok.php');
 include_once('includes/classes/Response.php');
-include_once('includes/classes/FelhasznaloDAO.php');
-include_once('includes/classes/JogosultsagDAO.php');
+include_once('includes/classes/FelhasznaloDTO.php');
+include_once('includes/classes/JogosultsagDTO.php');
 
-use includes\classes\FelhasznaloDAO;
+use includes\classes\FelhasznaloDTO;
 use includes\classes\Response;
 use includes\Database;
 use includes\View_Loader;
@@ -61,7 +61,7 @@ class HomeController {
 				}
 			} elseif (isset($_POST['register'])) {
 				// Ha register POST...
-				$userDao = new FelhasznaloDAO();
+				$userDao = new FelhasznaloDTO();
 				$userDao->csaladi_nev = $_POST['reg_lastname'];
 				$userDao->utonev = $_POST['reg_firstname'];
 				$userDao->bejelentkezes = $_POST['reg_username'];

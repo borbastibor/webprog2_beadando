@@ -4,7 +4,7 @@ namespace controllers;
 include_once('includes/View_Loader.php');
 include_once('models/Velemenyek.php');
 
-use includes\classes\VelemenyDAO;
+use includes\classes\VelemenyDTO;
 use includes\classes\Response;
 use includes\Database;
 use includes\View_Loader;
@@ -54,15 +54,15 @@ class CommentsController {
 
         if ($_POST) {
             if (isset($_POST['edit_comment'])) {
-                $velemenyDao = new VelemenyDAO();
-                $velemenyDao->id = $_POST['id'];
-                $velemenyDao->velemeny = $_POST['velemeny'];
-                $velemenyDao->email = $_POST['email'];
-                $velemenyDao->datum = date('Y-m-d H:i:s');
-                $velemenyDao->felhasznalo_id = $this->usersModel->getByUsername($_SESSION['username'])->id;
+                $VelemenyDTO = new VelemenyDTO();
+                $VelemenyDTO->id = $_POST['id'];
+                $VelemenyDTO->velemeny = $_POST['velemeny'];
+                $VelemenyDTO->email = $_POST['email'];
+                $VelemenyDTO->datum = date('Y-m-d H:i:s');
+                $VelemenyDTO->felhasznalo_id = $this->usersModel->getByUsername($_SESSION['username'])->id;
 
-                if ($velemenyDao->id == 0) {
-                    if ($this->commentsModel->insert($velemenyDao)) {
+                if ($VelemenyDTO->id == 0) {
+                    if ($this->commentsModel->insert($VelemenyDTO)) {
                         echo(json_encode(new Response(false, 'A beszúrás sikeres volt!')));
                         return;
                     } else {
@@ -70,7 +70,7 @@ class CommentsController {
                         return;
                     }
                 } else {
-                    if ($this->commentsModel->update($velemenyDao)) {
+                    if ($this->commentsModel->update($VelemenyDTO)) {
                         echo(json_encode(new Response(false, 'A módosítás sikeres volt!')));
                         return;
                     } else {

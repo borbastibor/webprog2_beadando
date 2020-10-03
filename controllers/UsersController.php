@@ -5,7 +5,7 @@ include_once('includes/View_Loader.php');
 include_once('models/Jogosultsagok.php');
 include_once('models/Felhasznalok.php');
 
-use includes\classes\FelhasznaloDAO;
+use includes\classes\FelhasznaloDTO;
 use includes\classes\Response;
 use includes\Database;
 use includes\View_Loader;
@@ -43,7 +43,7 @@ class UsersController {
         }
         if ($_POST) {
             if (isset($_POST['edit_user'])) {
-                $userDao = new FelhasznaloDAO();
+                $userDao = new FelhasznaloDTO();
                 $userDao->id = $_POST['id'];
                 $userDao->csaladi_nev = $_POST['csaladi_nev'];
                 $userDao->utonev = $_POST['utonev'];

@@ -1,9 +1,9 @@
 <?php
 namespace includes\classes;
 
-include_once('includes/classes/AbstractDAO.php');
+include_once('includes/classes/AbstractDTO.php');
 
-class JogosultsagDAO extends AbstractDAO {
+class JogosultsagDTO extends AbstractDTO {
 
     public $id;
     public $jog_nev;
