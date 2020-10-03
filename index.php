@@ -6,4 +6,5 @@ define('SITE_ROOT', 'http://localhost/webprog2_beadando/');
 
 include_once('includes/database_inc.php');
 include_once('includes/menu_inc.php');
+include_once('includes/soap_inc.php');
 include_once('includes/routes_inc.php');
