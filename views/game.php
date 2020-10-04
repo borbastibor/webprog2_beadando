@@ -4,14 +4,8 @@
             <h6>Játék</h6>    
         </div>
         <div style="padding:20px;">
-            <canvas id="gameCanvas" disabled></canvas>
-            <label for="gravity" id="labelgrav">Gravitáció erőssége:</label>
-            <input type="number" id="gravity" size="5"  min="0" max="1" step="0.1" value="0.6">
-            <label for="ballnumber" id="labelballs">Labdák száma:</label>
-            <input type="number" id="ballnumber" size="5" min="1" max="50" step="1" value="1">
-            <label for="ballsize" id="labelsize">Labdák mérete:</label>
-            <input type="number" id="ballsize" size="5" min="1" max="50" step="1" value="20">
-            <button id="btn">Indítás</button>
+            <canvas id="gameCanvas"></canvas>
+            <button id="btn">Gyorsít</button>
         </div>
     </div>
 </div>
