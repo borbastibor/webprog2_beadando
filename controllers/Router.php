@@ -8,7 +8,7 @@ include_once('controllers/UsersController.php');
 include_once('controllers/NewsController.php');
 include_once('controllers/CommentsController.php');
 include_once('controllers/GameController.php');
-include_once('controllers/SoapController.php');
+include_once('controllers/WsclientsController.php');
 
 use includes\classes\Route;
 use \ReflectionClass;

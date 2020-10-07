@@ -54,7 +54,10 @@ INSERT INTO `menu` (`url`, `nev`, `szulo`, `sorrend`, `jog_szint`) VALUES
   ('admin/index', 'Admin', '', 40, (SELECT `jog_szint` FROM `jogosultsagok` WHERE `jog_nev` = 'Admin' LIMIT 1)),
   ('users/index', 'Felhasználók', 'Admin', 10, (SELECT `jog_szint` FROM `jogosultsagok` WHERE `jog_nev` = 'Admin' LIMIT 1)),
   ('rights/index', 'Jogosultságok', 'Admin', 20, (SELECT `jog_szint` FROM `jogosultsagok` WHERE `jog_nev` = 'Admin' LIMIT 1)),
-  ('game/index', 'Játék', '', 50, (SELECT `jog_szint` FROM `jogosultsagok` WHERE `jog_nev` = 'Látogató' LIMIT 1));
+  ('game/index', 'Játék', '', 50, (SELECT `jog_szint` FROM `jogosultsagok` WHERE `jog_nev` = 'Látogató' LIMIT 1)),
+  ('wsclients/index', 'SOAP/REST kliensek', '', 60, (SELECT `jog_szint` FROM `jogosultsagok` WHERE `jog_nev` = 'Látogató' LIMIT 1)),
+  ('wsclients/soap', 'SOAP kliens', 'SOAP/REST kliensek', 10, (SELECT `jog_szint` FROM `jogosultsagok` WHERE `jog_nev` = 'Látogató' LIMIT 1)),
+  ('wsclients/rest', 'REST kliens', 'SOAP/REST kliensek', 20, (SELECT `jog_szint` FROM `jogosultsagok` WHERE `jog_nev` = 'Látogató' LIMIT 1));
 
 -- A hirek tábla létrehozása
  CREATE TABLE IF NOT EXISTS `hirek` (

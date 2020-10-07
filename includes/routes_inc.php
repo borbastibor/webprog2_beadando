@@ -26,10 +26,9 @@ $router->register(new Route('#(comments/index)#', 'CommentsController', 'index')
 $router->register(new Route('#(comments/edit.*)#', 'CommentsController', 'edit'));
 $router->register(new Route('#(comments/delete.*)#', 'CommentsController', 'delete'));
 $router->register(new Route('#(game)#', 'GameController', 'index'));
+$router->register(new Route('#(wsclients/soap)#', 'WsclientsController', 'soapClient'));
+$router->register(new Route('#(wsclients/rest)#', 'WsclientsController', 'restClient'));
 $router->register(new Route('#(error/error.*)#', 'ErrorController', 'error'));
-$router->register(new Route('#(soap/news)#', 'SoapController', 'getNews'));
-$router->register(new Route('#(soap/comments)#', 'SoapController', 'getComments'));
-$router->register(new Route('#(rest.*)#', 'SoapController', 'handler'));
 // Ez a két route mindig az utolsó kell legyen, csak kényelmi szempontból került beleírásra
 $router->register(new Route('#(home)#', 'HomeController', 'index'));
 $router->register(new Route('#()#', 'HomeController', 'index'));
