@@ -11,7 +11,7 @@
                         </select>
                     </td>
                     <td>
-                        <button id="request" class="w3-button w3-green w3-round-xxlarge">Adatok lekérése</button>
+                        <button id="btn_soap_request" class="w3-button w3-green w3-round-xxlarge">Adatok lekérése</button>
                     </td>
                 </tr>
             </table>
