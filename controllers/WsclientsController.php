@@ -27,7 +27,7 @@ class WsclientsController {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$data = curl_exec($ch);
 		curl_close($ch);
-        $view = new View_Loader($this->baseName.'_rest', $data);
+        $view = new View_Loader($this->baseName.'_rest', json_decode($data));
 	}
 	
 	public function soapRequest() {
@@ -58,16 +58,17 @@ class WsclientsController {
 
 	public function restRequest() {
 		switch (true) {
-			case isset($_POST['rest_insert']):
+			case isset($_POST['rest_ins_upd']):
 				# code...
 				break;
 			
-			case isset($_POST['rest_update']):
-				# code...
-				break;
-
 			case isset($_POST['rest_delete']):
-				# code...
+				$ch = curl_init($this->restUrl);
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($_POST['news_id']));
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				$result = curl_exec($ch);
+				curl_close($ch);
 				break;
 		}
 	}

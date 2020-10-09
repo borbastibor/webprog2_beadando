@@ -29,6 +29,7 @@ $router->register(new Route('#(game)#', 'GameController', 'index'));
 $router->register(new Route('#(wsclients/soap)#', 'WsclientsController', 'soapClient'));
 $router->register(new Route('#(wsclients/req_soap)#', 'WsclientsController', 'soapRequest'));
 $router->register(new Route('#(wsclients/rest)#', 'WsclientsController', 'restClient'));
+$router->register(new Route('#(wsclients/req_rest)#', 'WsclientsController', 'restRequest'));
 $router->register(new Route('#(error/error.*)#', 'ErrorController', 'error'));
 // Ez a két route mindig az utolsó kell legyen, csak kényelmi szempontból került beleírásra
 $router->register(new Route('#(home)#', 'HomeController', 'index'));
