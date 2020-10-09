@@ -15,7 +15,7 @@
                     </td>
                 </tr>
             </table>
-            <table id="datagrid"></table>
+            <table class="w3-table-all w3-centered" id="datagrid"><thead></thead><tbody></tbody></table><br>
         </div> 
     </div>
 </div>
