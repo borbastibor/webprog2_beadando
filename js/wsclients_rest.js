@@ -1,5 +1,15 @@
 $(document).ready(function() {
     $('#btn_save_news').click(function(evt) {
+        if ($('#news_id').val() == '' && $('#cim').val() == '' || $('#hir') == '') {
+            $('#news_message_label').html('<p>Létrehozáshoz adja meg a címet és a szöveget is!</p>').show();
+            return;
+        }
+
+        if ($('#news_id').val() != '' && $('#news_id').val() < 1) {
+            $('#news_message_label').html('<p>Módosításhoz hibás azonosítót adott meg!</p>').show();
+            return;
+        }
+
         $.ajax({
             url: 'wsclients/req_rest',
             type: 'POST',
@@ -16,6 +26,7 @@ $(document).ready(function() {
                     $('#news_edit_message_label').html('<p>' + msg.message + '</p>').show();
                 } else {
                     alert(msg.message);
+                    location.assign('wsclients/rest');
                 }
             }
         });
@@ -38,9 +49,10 @@ $(document).ready(function() {
             success: function(response) {
                 var msg = JSON.parse(response);
                 if (msg.error != 0) {
-                    $('#news_edit_message_label').html('<p>' + msg.message + '</p>').show();
+                    $('#news_message_label').html('<p>' + msg.message + '</p>').show();
                 } else {
                     alert(msg.message);
+                    location.assign('wsclients/rest');
                 }
             }
         });

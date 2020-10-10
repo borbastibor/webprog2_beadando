@@ -59,16 +59,36 @@ class WsclientsController {
 	public function restRequest() {
 		switch (true) {
 			case isset($_POST['rest_ins_upd']):
-				# code...
+				if ($_POST['id'] != '') {
+					// módosítás...
+					$data = ['id' => $_POST['id'], 'cim' => $_POST['cim'], 'hir' => $_POST['hir']];
+					$ch = curl_init($this->restUrl);
+					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+					curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					$result = curl_exec($ch);
+					curl_close($ch);
+				} elseif ($_POST['id'] == '') {
+					// beszúrás...
+					$data = ['cim' => $_POST['cim'], 'hir' => $_POST['hir'], 'datum' => date('Y-m-d H:i:s')];
+					$ch = curl_init($this->restUrl);
+					curl_setopt($ch, CURLOPT_POST, 1);
+					curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					$result = curl_exec($ch);
+					curl_close($ch);
+				}
+				echo(json_encode(new Response(false, $result)));
 				break;
 			
 			case isset($_POST['rest_delete']):
 				$ch = curl_init($this->restUrl);
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($_POST['news_id']));
+				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(['id' => $_POST['id']]));
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				$result = curl_exec($ch);
 				curl_close($ch);
+				echo(json_encode(new Response(false, $result)));
 				break;
 		}
 	}
