@@ -11,7 +11,7 @@
             </p>
             <p>
                 <label>Hír: </label>
-                <?php echo($viewData['data']['jog_szint'] ?? ''); ?>
+                <?php echo($viewData['data']['hir'] ?? ''); ?>
             </p>
             <p>
                 <label>Dátum: </label>

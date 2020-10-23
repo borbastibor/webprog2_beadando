@@ -104,7 +104,16 @@ class NewsController {
             }
         } else {
             $pArray = $this->getParamArray($param);
-            $view = new View_Loader($this->baseName.'_delete', $this->newsModel->getById($pArray['id']) ?? null);
+            $news = $this->newsModel->getById($pArray['id']) ?? null;
+            $user = $this->usersModel->getById($news['felhasznalo_id']) ?? null;
+            $dataarray = [
+                'id' => $news['id'],
+                'hir' => $news['hir'],
+                'datum' => $news['datum'],
+                'cim' => $news['cim'],
+                'felhasznalo_nev' => $user->bejelentkezes
+            ];
+            $view = new View_Loader($this->baseName.'_delete', $dataarray);
         }
     }
 
