@@ -19,3 +19,26 @@ A forrásokat feltöltve a helyi web szerver (XAMPP) munka-könyvtárába az alk
 
 Összesen: 20 pont. 
 Minimum 10 pont.
+
+# Alkalmazás előkészítése futtatáshoz
+
+A webprog2_beadando mappát az xampp/htdocs könyvtárába másoljuk. A soap és rest könyvtárakat ugyancsak az xampp/htdocs könyvtárba másoljuk. Ezután a webprog2_beadando könyvtárban a web2_borbastibor.sql fájl be kell importálni a phpMyAdmin segítségével és a szkriptet meg kell futtatni, ezáltal létrejön az alkalmazás futásához szükséges adatbázis a szükséges tesztadatokkal. Miután ezzel végeztünk az apache webszerver elindítása után a localhost/webprog2_beadando címen már meg is tekinthetjük az oldalt.
+
+A weboldalra alapértelmezetten az alábbi felhasználónevekkel és jelszavakkal lehet belépni:
+
+Felhasználónév	Jelszó	Jogosultság
+Admin	        1234	Admin
+Login2	        1234	Moderátor
+Login3	        1234	Moderátor
+Login4	        1234	Moderátor
+Login5	        1234	Regisztrált látogató
+Login6	        1234	Regisztrált látogató
+Login7	        1234	Regisztrált látogató
+Login8	        1234	Moderátor
+Login9	        1234	Regisztrált látogató
+Login10	        1234	Regisztrált látogató
+
+Admin jogosultság: Szerkesztheti a jogosultságokat, felhasználókat, véleményeket és híreket.
+Moderátor jogosultság: Szerkesztheti a véleményeket és híreket.
+Regisztrált látogató: Létrehozhat véleményeket.
+Látogató: Olvashatja a híreket.
