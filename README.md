@@ -26,17 +26,18 @@ A webprog2_beadando mappát az xampp/htdocs könyvtárába másoljuk. A soap és
 
 A weboldalra alapértelmezetten az alábbi felhasználónevekkel és jelszavakkal lehet belépni:
 
-Felhasználónév	Jelszó	Jogosultság
-Admin	        1234	Admin
-Login2	        1234	Moderátor
-Login3	        1234	Moderátor
-Login4	        1234	Moderátor
-Login5	        1234	Regisztrált látogató
-Login6	        1234	Regisztrált látogató
-Login7	        1234	Regisztrált látogató
-Login8	        1234	Moderátor
-Login9	        1234	Regisztrált látogató
-Login10	        1234	Regisztrált látogató
+| Felhasználónév | Jelszó | Jogosultság |
+| -------------- | ------ | ----------- |
+| Admin | 1234 | Admin |
+| Login2 | 1234 | Moderátor |
+| Login3 | 1234 | Moderátor |
+| Login4 | 1234 | Moderátor |
+| Login5 | 1234 | Regisztrált látogató |
+| Login6 | 1234 | Regisztrált látogató |
+| Login7 | 1234 | Regisztrált látogató |
+| Login8 | 1234 | Moderátor |
+| Login9 | 1234 | Regisztrált látogató |
+| Login10 | 1234 | Regisztrált látogató |
 
 Admin jogosultság: Szerkesztheti a jogosultságokat, felhasználókat, véleményeket és híreket.
 Moderátor jogosultság: Szerkesztheti a véleményeket és híreket.
