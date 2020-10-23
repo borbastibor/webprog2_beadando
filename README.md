@@ -39,7 +39,7 @@ A weboldalra alapértelmezetten az alábbi felhasználónevekkel és jelszavakka
 | Login9 | 1234 | Regisztrált látogató |
 | Login10 | 1234 | Regisztrált látogató |
 
-Admin jogosultság: Szerkesztheti a jogosultságokat, felhasználókat, véleményeket és híreket.
-Moderátor jogosultság: Szerkesztheti a véleményeket és híreket.
-Regisztrált látogató: Létrehozhat véleményeket.
+Admin jogosultság: Szerkesztheti a jogosultságokat, felhasználókat, véleményeket és híreket.<br/>
+Moderátor jogosultság: Szerkesztheti a véleményeket és híreket.<br/>
+Regisztrált látogató: Létrehozhat véleményeket.<br/>
 Látogató: Olvashatja a híreket.
